@@ -36,23 +36,18 @@ public class BuscarAutor extends javax.swing.JFrame {
         SidePanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         btn_AgregarResumen = new javax.swing.JPanel();
-        icono1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btn_AnalizarResumen = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         btn_BuscarKeyword = new javax.swing.JPanel();
-        icono7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         btn_BuscarAutor = new javax.swing.JPanel();
-        icono3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         btn_SalirGuardar = new javax.swing.JPanel();
-        icono4 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -60,10 +55,7 @@ public class BuscarAutor extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         exit = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -93,9 +85,6 @@ public class BuscarAutor extends javax.swing.JFrame {
             }
         });
 
-        icono1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        icono1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/icons8-amazon-32.png"))); // NOI18N
-
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Agregar Resumen");
@@ -109,20 +98,17 @@ public class BuscarAutor extends javax.swing.JFrame {
             .addGroup(btn_AgregarResumenLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(icono1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                .addGap(37, 37, 37))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                .addGap(69, 69, 69))
         );
         btn_AgregarResumenLayout.setVerticalGroup(
             btn_AgregarResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_AgregarResumenLayout.createSequentialGroup()
                 .addGap(8, 8, 8)
-                .addGroup(btn_AgregarResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(icono1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel9))
+                .addGroup(btn_AgregarResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 7, Short.MAX_VALUE))
         );
 
@@ -145,8 +131,6 @@ public class BuscarAutor extends javax.swing.JFrame {
             }
         });
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/pedido_blanco.png"))); // NOI18N
-
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/Analyze-Icon.png"))); // NOI18N
 
         javax.swing.GroupLayout btn_AnalizarResumenLayout = new javax.swing.GroupLayout(btn_AnalizarResumen);
@@ -156,20 +140,14 @@ public class BuscarAutor extends javax.swing.JFrame {
             .addGroup(btn_AnalizarResumenLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel5)
                 .addContainerGap(77, Short.MAX_VALUE))
         );
         btn_AnalizarResumenLayout.setVerticalGroup(
             btn_AnalizarResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_AnalizarResumenLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btn_AnalizarResumenLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(9, Short.MAX_VALUE)
                 .addGroup(btn_AnalizarResumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
@@ -182,14 +160,6 @@ public class BuscarAutor extends javax.swing.JFrame {
         btn_BuscarKeyword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_BuscarKeywordMouseClicked(evt);
-            }
-        });
-
-        icono7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        icono7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/cargar y guardar blanco.png"))); // NOI18N
-        icono7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                icono7MouseClicked(evt);
             }
         });
 
@@ -213,9 +183,7 @@ public class BuscarAutor extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10)
-                .addGap(34, 34, 34)
-                .addComponent(icono7)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         btn_BuscarKeywordLayout.setVerticalGroup(
             btn_BuscarKeywordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,7 +191,6 @@ public class BuscarAutor extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addGroup(btn_BuscarKeywordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-                    .addComponent(icono7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel8))
                 .addGap(0, 6, Short.MAX_VALUE))
         );
@@ -234,14 +201,6 @@ public class BuscarAutor extends javax.swing.JFrame {
         btn_BuscarAutor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_BuscarAutorMouseClicked(evt);
-            }
-        });
-
-        icono3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        icono3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/nueva ruta blanco.png"))); // NOI18N
-        icono3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                icono3MouseClicked(evt);
             }
         });
 
@@ -263,9 +222,7 @@ public class BuscarAutor extends javax.swing.JFrame {
             .addGroup(btn_BuscarAutorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(icono3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel6)
                 .addContainerGap(92, Short.MAX_VALUE))
         );
@@ -275,7 +232,6 @@ public class BuscarAutor extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addGroup(btn_BuscarAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-                    .addComponent(icono3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel11))
                 .addGap(0, 6, Short.MAX_VALUE))
         );
@@ -286,14 +242,6 @@ public class BuscarAutor extends javax.swing.JFrame {
         btn_SalirGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_SalirGuardarMouseClicked(evt);
-            }
-        });
-
-        icono4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        icono4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/nueva ruta blanco.png"))); // NOI18N
-        icono4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                icono4MouseClicked(evt);
             }
         });
 
@@ -315,9 +263,7 @@ public class BuscarAutor extends javax.swing.JFrame {
             .addGroup(btn_SalirGuardarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(icono4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel14)
                 .addContainerGap(114, Short.MAX_VALUE))
         );
@@ -327,7 +273,6 @@ public class BuscarAutor extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addGroup(btn_SalirGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-                    .addComponent(icono4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel15))
                 .addGap(0, 6, Short.MAX_VALUE))
         );
@@ -361,7 +306,7 @@ public class BuscarAutor extends javax.swing.JFrame {
 
         exit.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         exit.setForeground(new java.awt.Color(255, 255, 255));
-        exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/exit.png"))); // NOI18N
+        exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/exit-icon.png"))); // NOI18N
         exit.setText("Exit");
         exit.setToolTipText("");
         exit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -370,27 +315,21 @@ public class BuscarAutor extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/exit-icon.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(exit)
                 .addGap(21, 21, 21))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(exit))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(exit)
+                .addGap(13, 13, 13))
         );
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -411,16 +350,12 @@ public class BuscarAutor extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
 
         BG.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 650, 190));
-
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/fondo_inicio.png"))); // NOI18N
-        BG.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, -1, -1));
-        BG.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
@@ -509,11 +444,6 @@ public class BuscarAutor extends javax.swing.JFrame {
         setLocation(x, y);
     }//GEN-LAST:event_jPanel4MouseDragged
 
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-        // TODO add your handling code here:
-      
-    }//GEN-LAST:event_jLabel10MouseClicked
-
     private void btn_BuscarKeywordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_BuscarKeywordMouseClicked
         // TODO add your handling code here:
         BuscarKeyword v3 = new BuscarKeyword();
@@ -521,11 +451,6 @@ public class BuscarAutor extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_btn_BuscarKeywordMouseClicked
-
-    private void icono7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono7MouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_icono7MouseClicked
 
     private void btn_BuscarAutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_BuscarAutorMouseClicked
         // TODO add your handling code here:
@@ -539,11 +464,6 @@ public class BuscarAutor extends javax.swing.JFrame {
         // TODO add your handling code here:
        
     }//GEN-LAST:event_jLabel6MouseClicked
-
-    private void icono3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono3MouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_icono3MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
@@ -560,10 +480,6 @@ public class BuscarAutor extends javax.swing.JFrame {
     private void iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconoMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_iconoMouseClicked
-
-    private void icono4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono4MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_icono4MouseClicked
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
         // TODO add your handling code here:
@@ -599,6 +515,11 @@ public class BuscarAutor extends javax.swing.JFrame {
         v3.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_AgregarResumenMouseClicked
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jLabel10MouseClicked
 
     /**
      * @param args the command line arguments
@@ -676,24 +597,16 @@ public class BuscarAutor extends javax.swing.JFrame {
     private javax.swing.JPanel btn_BuscarKeyword;
     private javax.swing.JPanel btn_SalirGuardar;
     private javax.swing.JLabel exit;
-    private javax.swing.JLabel icono1;
-    private javax.swing.JLabel icono3;
-    private javax.swing.JLabel icono4;
-    private javax.swing.JLabel icono7;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
