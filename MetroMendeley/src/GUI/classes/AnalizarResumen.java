@@ -6,14 +6,12 @@ package GUI.Classes;
 
 import java.awt.Point;
 
-
-
 /**
  *
  * @author andre
  */
 public class AnalizarResumen extends javax.swing.JFrame {
-
+    private Point initialClick;
     /**
      * Creates new form Inicio
      */
@@ -75,6 +73,11 @@ public class AnalizarResumen extends javax.swing.JFrame {
         SidePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/MetroMendeleyLogo.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
         SidePanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 280, 80));
 
         btn_AgregarResumen.setBackground(new java.awt.Color(195, 123, 128));
@@ -430,7 +433,7 @@ public class AnalizarResumen extends javax.swing.JFrame {
         System.exit(0);
 
     }//GEN-LAST:event_exitMousePressed
-    private Point initialClick;
+    
 
     private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
         // TODO add your handling code here:
@@ -468,11 +471,16 @@ public class AnalizarResumen extends javax.swing.JFrame {
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
- 
+        BuscarAutor v3 = new BuscarAutor();
+        v3.setVisible(true);
+        this.dispose();
+
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-
+        AnalizarResumen v2 = new AnalizarResumen();
+        v2.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void btn_AnalizarResumenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AnalizarResumenMouseClicked
@@ -515,6 +523,14 @@ public class AnalizarResumen extends javax.swing.JFrame {
         v2.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BuscarPorKw
+
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        Inicio v2 = new Inicio();
+        v2.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:

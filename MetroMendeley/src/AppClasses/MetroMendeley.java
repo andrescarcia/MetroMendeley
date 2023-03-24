@@ -6,11 +6,11 @@ package AppClasses;
  */
 
 
-import GUI.Classes.AgregarResumen;
+import GUI.Classes.Inicio;
 
 /**
  *
- * @author andre
+ * @author andre && angel granado
  */
 public class MetroMendeley {
 
@@ -20,7 +20,7 @@ public class MetroMendeley {
     public static void main(String[] args) {
         // TODO code application logic here
         FileFunctions.updateDefaultFile();
-        AgregarResumen main = new AgregarResumen();
+        Inicio main = new Inicio();
         main.setVisible(true);
     }
     

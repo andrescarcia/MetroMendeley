@@ -12,6 +12,7 @@ import java.awt.Point;
  * @author andre & Angel Granado
  */
 public class BuscarKeyword extends javax.swing.JFrame {
+
     private Helpers helpers = new Helpers();
     private App app = App.getInstance();
     boolean keyWordSelected = false;
@@ -28,7 +29,7 @@ public class BuscarKeyword extends javax.swing.JFrame {
         this.AnalizarBoton.setEnabled(false);
         this.showInfo.setEditable(false);
         this.getHelpers().fillInfoKeyWord(this.showInfo, this.selectKeywordOptions);
-       
+
     }
 
     /**
@@ -86,6 +87,11 @@ public class BuscarKeyword extends javax.swing.JFrame {
         SidePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/MetroMendeleyLogo.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
         SidePanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 280, 80));
 
         btn_AgregarResumen.setBackground(new java.awt.Color(195, 123, 128));
@@ -408,11 +414,6 @@ public class BuscarKeyword extends javax.swing.JFrame {
         jLabel20.setText("de las Keywords disponibles:");
         BG.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, -1, -1));
 
-        selectKeywordOptions.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectKeywordOptionsActionPerformed(evt);
-            }
-        });
         BG.add(selectKeywordOptions, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 560, 400, 50));
 
         BuscarBoton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -470,7 +471,9 @@ public class BuscarKeyword extends javax.swing.JFrame {
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
-
+        BuscarKeyword v2 = new BuscarKeyword();
+        v2.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void btn_BuscarKeywordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_BuscarKeywordMouseClicked
@@ -486,11 +489,17 @@ public class BuscarKeyword extends javax.swing.JFrame {
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
+        BuscarAutor v3 = new BuscarAutor();
+        v3.setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
+        AnalizarResumen v2 = new AnalizarResumen();
+        v2.setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_jLabel5MouseClicked
 
@@ -515,20 +524,19 @@ public class BuscarKeyword extends javax.swing.JFrame {
 
     private void AnalizarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnalizarBotonActionPerformed
         // TODO add your handling code here:
-        if (!this.selectedPaper){
+        if (!this.selectedPaper) {
             this.selectedPaper = true;
             this.getHelpers().searchPaperByKeyword(this.selectPaper, this.showInfo);
             this.AnalizarBoton.setText("Quitar");
             this.selectPaper.setEnabled(false);
-            
-            
-        } else{
+
+        } else {
             this.selectedPaper = false;
             this.selectPaper.setEnabled(true);
             this.getHelpers().fillInfoKeyWord(this.showInfo, this.selectKeywordOptions);
             this.getHelpers().fillInfoKeyWord(showInfo, selectKeywordOptions);
             this.AnalizarBoton.setText("Analizar");
-            
+
         }
     }//GEN-LAST:event_AnalizarBotonActionPerformed
 
@@ -542,10 +550,6 @@ public class BuscarKeyword extends javax.swing.JFrame {
         v2.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_AgregarResumenMouseClicked
-
-    private void selectKeywordOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectKeywordOptionsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_selectKeywordOptionsActionPerformed
 
     private void BuscarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarBotonActionPerformed
         // TODO add your handling code here:
@@ -570,6 +574,14 @@ public class BuscarKeyword extends javax.swing.JFrame {
             this.getHelpers().fillInfoKeyWord(showInfo, selectKeywordOptions);
         }
     }//GEN-LAST:event_BuscarBotonActionPerformed
+
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        Inicio v2 = new Inicio();
+        v2.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
@@ -693,7 +705,6 @@ public class BuscarKeyword extends javax.swing.JFrame {
     public boolean isKeyWordSelected() {
         return keyWordSelected;
     }
-    
 
     /**
      * @param keyWordSelected the keyWordSelected to set
