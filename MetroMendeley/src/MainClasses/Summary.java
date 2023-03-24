@@ -45,7 +45,8 @@ public class Summary {
             }
             keywordsString += "- " + keyword.replace("\n", "") + ": Frecuencia con la cual aparece en el resumen: " + counter + " veces.\n";
         }
-        return "TÍTULO: \n" + this.title + "\n" + "AUTORES: \n" + authorsString + "\n" + "\n" + "PALABRAS CLAVES: \n" + keywordsString;
+        return "TÍTULO: \n" + this.title + "\n" + "AUTORES: \n" + authorsString
+                + "\n" + "\n" + "PALABRAS CLAVES: \n" + keywordsString;
     }
 
     // Getters & Setters
@@ -104,5 +105,24 @@ public class Summary {
     public void setKeywords(String[] keywords) {
         this.keywords = keywords;
     }
+
+    @Override
+    public String toString() {
+    String authorsString = String.join(", ", this.authors) + ".";
+    String keywordsString = String.join(", ", this.keywords) + ".";
+
+    String[] words = this.body.split("\\s+");
+    StringBuilder bodyBuilder = new StringBuilder();
+
+    for (int i = 0; i < words.length; i++) {
+        bodyBuilder.append(words[i]).append(" ");
+        if ((i+1) % 9 == 0) {
+            bodyBuilder.append("\n");
+        }
+    }
+    
+    return "TÍTULO: " + this.title + "\nAUTORES: " + authorsString
+            + "\n\nRESUMEN\n" + bodyBuilder.toString() + "\n\nPALABRAS CLAVES: \n" + keywordsString;
+}
 
 }
