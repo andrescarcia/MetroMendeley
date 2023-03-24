@@ -2,45 +2,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package metromendeley.AppClasses;
+package AppClasses;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import javax.swing.JOptionPane;
-import metromendeley.MainClasses.HashTable;
-import metromendeley.MainClasses.Summary;
+import MainClasses.Summary;
 
 /**
- * Descipción: Clase App
- * @author Erika Hernández 
- * Fecha: 20/03/2023
+ *
+ * @author Angel Granado && Erika Hernández
  */
-public class App {
-
-    private HashTable hashTable;
-    private static App app;
-
-    public App() {
-        this.hashTable = new HashTable(30, 300);
-        this.updateDefaultFile();
-    }
-
-    public static synchronized App getInstance() {
-        if (app == null) {
-            app = new App();
-        }
-        return app;
-    }
+public class FileFunctions {
 
     /**
-     * Con el método updateDefaultFile se precarga los artículos científicos
-     * dado en el pdf del proyecto. Se utiliza JFileChooser para cargar el TXT.
-     * Posteriormente se llama al método DJB2 con el propósito de asignarle un
-     * index al key (title). Y se utiliza al método DoubleHashing en caso que
-     * exista colisión en la asignación del index.
+     * Lee y actualiza el fichero por defecto que contiene la información de los
+     * artículos.
      */
-    public void updateDefaultFile() {
+    public static void updateDefaultFile() {
         String path = "test\\DefaultFile.txt";
         String line;
         String txt = "";
@@ -61,8 +41,8 @@ public class App {
         String[] arrayAux1 = txt.split("%");
         String[] arrayAux2, arrayAux3, arrayAux4, arrayAux5, arrayAux6;
 
-        for (int i = 0; i < arrayAux1.length; i++) {
-            arrayAux2 = arrayAux1[i].split("Autores\n");
+        for (String arrayAux11 : arrayAux1) {
+            arrayAux2 = arrayAux11.split("Autores\n");
             // Con arrayAux2[0] se accede al titulo del paper. 
             arrayAux3 = arrayAux2[1].split("Resumen");
             // Con arrayAux4 se tiene un arreglo que contiene todos los autores de ese paper. 
@@ -72,22 +52,30 @@ public class App {
             // Con arrayAux6 Se tiene un arreglo que contiene todas las palabras claves de ese paper. 
             arrayAux6 = arrayAux5[1].split(",");
             for (int j = 0; j < arrayAux6.length; j++) {
-                arrayAux6[j] = arrayAux6[j].replace("\n", "").replace(".", "");
+                arrayAux6[j] = arrayAux6[j].replace("\n", "").replace(".", "").strip();
                 //arrayAux6[j] = arrayAux6[j].substring(0, 1).toUpperCase() + arrayAux6[j].substring(1);
             }
             // Se crea el objeto SUMARY que contendrá todo lo anteriormente mencionado como atributo. 
-            Summary sumary = new Summary(arrayAux2[0], arrayAux4, arrayAux5[0], arrayAux6);
-
+            Summary summary = new Summary(arrayAux2[0], arrayAux4, arrayAux5[0], arrayAux6);
             // Se agrega el paper al hashTable 
-            int position = this.getHashTable().addSumary(sumary);
+            int position = App.getInstance().getHashTable().addSumary(summary);
             // Se agrega los keywords al hashtable secundario (util para el requerimiento 3). 
-            this.getHashTable().addKeyword(arrayAux6, position);
-
+            App.getInstance().getHashTable().addKeyword(summary.getKeywords(), position);
         }
     }
+
     
+    ///REVISAR ESTE METODO, GUARDAR DATOS USANDO .strip()
     
-    public void uploadSumary(String path) {
+    /**
+     *
+     * Este método se encarga de leer un archivo de texto con un formato
+     * específico y a partir de ello, crear un objeto Summary y agregarlo
+     * temporalmente al hashTable.
+     *
+     * @param path La ruta del archivo de texto a leer.
+     */
+    public static void uploadSumary(String path) {
         String line;
         String txt = "";
 
@@ -106,6 +94,11 @@ public class App {
         }
 
         try {
+            //Primero verificamos que el txt tiene el formato indicado
+            if (!txt.contains("Autores") || !txt.contains("Resumen") || !txt.contains("Palabras claves:")) {
+                throw new Exception("El Txt no tiene el formato indicado!");
+            }
+
             String[] arrayAux2 = txt.split("Autores");
             String[] arrayAux3, arrayAux4, arrayAux5, arrayAux6;
             // Con arrayAux2[0] se accede al titulo del paper. 
@@ -123,7 +116,7 @@ public class App {
             // Se crea el objeto SUMARY que contendrá todo lo anteriormente mencionado como atributo. 
             Summary sumary = new Summary(arrayAux2[0], arrayAux4, arrayAux5[0], arrayAux6);
             // Se agrega temporalmente al hashTable el paper (OJO, es temporalmente porque todavía falta el método DoubleHashing que evite las posible colisiones derivadas de DBJ2
-            getHashTable().addSumary(sumary);
+            App.getInstance().getHashTable().addSumary(sumary);
             JOptionPane.showMessageDialog(null, "Su archivo se logró cargar efectivamente.");
 
         } catch (Exception e) {
@@ -131,17 +124,4 @@ public class App {
         }
     }
 
-    /**
-     * @return the hashTable
-     */
-    public HashTable getHashTable() {
-        return hashTable;
-    }
-
-    /**
-     * @param hashTable the hashTable to set
-     */
-    public void setHashTable(HashTable hashTable) {
-        this.hashTable = hashTable;
-    }
 }
