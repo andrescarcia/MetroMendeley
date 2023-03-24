@@ -4,15 +4,18 @@
  */
 package GUI.Classes;
 
+import AppClasses.App;
 import java.awt.Point;
-
-
 
 /**
  *
- * @author andre
+ * @author andre & Angel Granado
  */
 public class BuscarKeyword extends javax.swing.JFrame {
+    private Helpers helpers = new Helpers();
+    private App app = App.getInstance();
+    boolean keyWordSelected = false;
+    boolean selectedPaper = false;
 
     /**
      * Creates new form Inicio
@@ -21,6 +24,11 @@ public class BuscarKeyword extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.selectPaper.setEnabled(false);
+        this.AnalizarBoton.setEnabled(false);
+        this.showInfo.setEditable(false);
+        this.getHelpers().fillInfoKeyWord(this.showInfo, this.selectKeywordOptions);
+       
     }
 
     /**
@@ -56,13 +64,16 @@ public class BuscarKeyword extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         exit = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        showKeywords = new javax.swing.JTextArea();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        selectKeywordDisplay = new javax.swing.JComboBox<>();
+        AnalizarBoton = new javax.swing.JButton();
+        selectPaper = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
+        selectKeywordOptions = new javax.swing.JComboBox<>();
+        BuscarBoton = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        showInfo = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -87,8 +98,18 @@ public class BuscarKeyword extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Agregar Resumen");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/agregar-Icon.png"))); // NOI18N
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_AgregarResumenLayout = new javax.swing.GroupLayout(btn_AgregarResumen);
         btn_AgregarResumen.setLayout(btn_AgregarResumenLayout);
@@ -356,14 +377,6 @@ public class BuscarKeyword extends javax.swing.JFrame {
 
         BG.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 650, 190));
 
-        showKeywords.setColumns(20);
-        showKeywords.setLineWrap(true);
-        showKeywords.setRows(5);
-        showKeywords.setEnabled(false);
-        jScrollPane1.setViewportView(showKeywords);
-
-        BG.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 520, 330));
-
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("A continuación tiene una lista ordenada alfabeticamente ");
@@ -371,30 +384,56 @@ public class BuscarKeyword extends javax.swing.JFrame {
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setText("Resumen:");
-        BG.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 610, -1, -1));
+        jLabel19.setText("Palabras Claves");
+        BG.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 530, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setText("Analizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        AnalizarBoton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        AnalizarBoton.setText("Analizar");
+        AnalizarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AnalizarBotonActionPerformed(evt);
             }
         });
-        BG.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 640, -1, 50));
+        BG.add(AnalizarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 640, 100, 50));
 
-        selectKeywordDisplay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        selectKeywordDisplay.addActionListener(new java.awt.event.ActionListener() {
+        selectPaper.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectKeywordDisplayActionPerformed(evt);
+                selectPaperActionPerformed(evt);
             }
         });
-        BG.add(selectKeywordDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 640, 400, 50));
+        BG.add(selectPaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 640, 400, 50));
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("de las Keywords disponibles:");
         BG.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, -1, -1));
+
+        selectKeywordOptions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectKeywordOptionsActionPerformed(evt);
+            }
+        });
+        BG.add(selectKeywordOptions, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 560, 400, 50));
+
+        BuscarBoton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BuscarBoton.setText("Buscar");
+        BuscarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarBotonActionPerformed(evt);
+            }
+        });
+        BG.add(BuscarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 560, 100, 50));
+
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel21.setText("Papers Relacionados");
+        BG.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 610, -1, -1));
+
+        showInfo.setColumns(20);
+        showInfo.setRows(5);
+        jScrollPane1.setViewportView(showInfo);
+
+        BG.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 510, 240));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -431,14 +470,11 @@ public class BuscarKeyword extends javax.swing.JFrame {
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
-   
+
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void btn_BuscarKeywordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_BuscarKeywordMouseClicked
         // TODO add your handling code here:
-        BuscarKeyword v2 = new BuscarKeyword();
-        v2.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_btn_BuscarKeywordMouseClicked
 
     private void btn_BuscarAutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_BuscarAutorMouseClicked
@@ -477,20 +513,77 @@ public class BuscarKeyword extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_SalirGuardarMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void AnalizarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnalizarBotonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        if (!this.selectedPaper){
+            this.selectedPaper = true;
+            this.getHelpers().searchPaperByKeyword(this.selectPaper, this.showInfo);
+            this.AnalizarBoton.setText("Quitar");
+            this.selectPaper.setEnabled(false);
+            
+            
+        } else{
+            this.selectedPaper = false;
+            this.selectPaper.setEnabled(true);
+            this.getHelpers().fillInfoKeyWord(this.showInfo, this.selectKeywordOptions);
+            this.getHelpers().fillInfoKeyWord(showInfo, selectKeywordOptions);
+            this.AnalizarBoton.setText("Analizar");
+            
+        }
+    }//GEN-LAST:event_AnalizarBotonActionPerformed
 
-    private void selectKeywordDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectKeywordDisplayActionPerformed
+    private void selectPaperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectPaperActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_selectKeywordDisplayActionPerformed
+    }//GEN-LAST:event_selectPaperActionPerformed
 
     private void btn_AgregarResumenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AgregarResumenMouseClicked
         // TODO add your handling code here:
-           AgregarResumen v2 = new AgregarResumen();
+        AgregarResumen v2 = new AgregarResumen();
         v2.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_AgregarResumenMouseClicked
+
+    private void selectKeywordOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectKeywordOptionsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectKeywordOptionsActionPerformed
+
+    private void BuscarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarBotonActionPerformed
+        // TODO add your handling code here:
+        if (!this.keyWordSelected) {
+            this.keyWordSelected = true;
+            this.selectKeywordOptions.setEnabled(false);
+            this.selectPaper.setEnabled(true);
+            this.AnalizarBoton.setEnabled(true);
+            this.AnalizarBoton.setText("Analizar");
+            this.BuscarBoton.setText("Quitar");
+            getHelpers().fillSelectPaper(this.selectKeywordOptions, selectPaper);
+            this.selectedPaper = false;
+        } else {
+            this.selectedPaper = false;
+            this.BuscarBoton.setText("Buscar");
+            this.AnalizarBoton.setText("Analizar");
+            this.selectPaper.setEnabled(false);
+            this.AnalizarBoton.setEnabled(false);
+            this.selectKeywordOptions.setEnabled(true);
+            this.keyWordSelected = false;
+            this.selectPaper.removeAllItems();
+            this.getHelpers().fillInfoKeyWord(showInfo, selectKeywordOptions);
+        }
+    }//GEN-LAST:event_BuscarBotonActionPerformed
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        AgregarResumen v2 = new AgregarResumen();
+        v2.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        // TODO add your handling code here:
+        AgregarResumen v2 = new AgregarResumen();
+        v2.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel9MouseClicked
 
     /**
      * @param args the command line arguments
@@ -544,7 +637,9 @@ public class BuscarKeyword extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AnalizarBoton;
     private javax.swing.JPanel BG;
+    private javax.swing.JButton BuscarBoton;
     private javax.swing.JPanel SidePanel;
     private javax.swing.JPanel btn_AgregarResumen;
     private javax.swing.JPanel btn_AnalizarResumen;
@@ -552,7 +647,6 @@ public class BuscarKeyword extends javax.swing.JFrame {
     private javax.swing.JPanel btn_BuscarKeyword;
     private javax.swing.JPanel btn_SalirGuardar;
     private javax.swing.JLabel exit;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -562,6 +656,7 @@ public class BuscarKeyword extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -573,7 +668,51 @@ public class BuscarKeyword extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JComboBox<String> selectKeywordDisplay;
-    private javax.swing.JTextArea showKeywords;
+    private javax.swing.JComboBox<String> selectKeywordOptions;
+    private javax.swing.JComboBox<String> selectPaper;
+    private javax.swing.JTextArea showInfo;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the app
+     */
+    public App getApp() {
+        return app;
+    }
+
+    /**
+     * @param app the app to set
+     */
+    public void setApp(App app) {
+        this.app = app;
+    }
+
+    /**
+     * @return the keyWordSelected
+     */
+    public boolean isKeyWordSelected() {
+        return keyWordSelected;
+    }
+    
+
+    /**
+     * @param keyWordSelected the keyWordSelected to set
+     */
+    public void setKeyWordSelected(boolean keyWordSelected) {
+        this.keyWordSelected = keyWordSelected;
+    }
+
+    /**
+     * @return the helpers
+     */
+    public Helpers getHelpers() {
+        return this.helpers;
+    }
+
+    /**
+     * @param helpers the helpers to set
+     */
+    public void setHelpers(Helpers helpers) {
+        this.helpers = helpers;
+    }
 }

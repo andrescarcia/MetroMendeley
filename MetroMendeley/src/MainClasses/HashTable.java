@@ -17,7 +17,7 @@ public class HashTable {
     public HashTable(int i, int j) {
         this.summaries = new Summary[i];
         this.keywords = new LinkedList[j];
-
+        this.fillKeyWordHT();
     }
 
     /**
@@ -104,34 +104,36 @@ public class HashTable {
      * clave en el arreglo de resúmenes
      */
     public void addKeyword(String[] keywordArray, int position) {
-        for (int i = 0; i < keywordArray.length; i++) {
+//        System.out.println(keywordArray.length);
+        for (String currentKeyWord : keywordArray) {
             // Se llama al Hash function pripcipal DBJ2  
-            int hash1 = DBJ2(keywordArray[i]);
+            int hash1 = DBJ2(currentKeyWord);
             // Se llama al DoubleHash para el manejo de colisiones.
-            int hash2 = doubleHash(keywordArray[i]);
-            // Se crea una variable de iteraciones para poder seguir generando index de ser requerida mas iteraciones.
-            int j = 0;
+            int hash2 = doubleHash(currentKeyWord);
+            
             // Se asigna como index inicial al hash1
             int index = hash1;
+            
             // Se valida si esta vacío el slot. 
             if (this.getKeywords()[index].isEmpty()) {
                 this.getKeywords()[index].addEnd(position);
-                this.getKeywords()[index].getpFirst().setKey(keywordArray[i]);
+                this.getKeywords()[index].getpFirst().setKey(currentKeyWord.strip());
+
                 // Si no esta vacio se valida si se esta intentado meter el mismo int (index del title) ya cargado.
             } else {
                 // si el keyword coincide con el key del primer nodo de la lista, entonces se agrega al final de la lista
-                if (keywordArray[i].equalsIgnoreCase(this.getKeywords()[index].getpFirst().getKey())) {
+                if (currentKeyWord.strip().equalsIgnoreCase(this.getKeywords()[index].getpFirst().getKey().strip())) {
                     this.getKeywords()[index].addEnd(position);
-
                     //si no, entonces el se maneja la colision
                 } else {
+                    int n = 0;
                     while (!this.getKeywords()[index].isEmpty()) {
-                        i++;
+                        n++;
                         // Se asigna index nuevo usando metodo double hashing., 
-                        index = (hash1 + i * hash2) % this.getSummaries().length;
+                        index = (hash1 + n * hash2) % this.getKeywords().length;
                     }
                     this.getKeywords()[index].addEnd(position);
-                    this.getKeywords()[index].getpFirst().setKey(keywordArray[i]);
+                    this.getKeywords()[index].getpFirst().setKey(currentKeyWord.strip());
                 }
             }
         }
@@ -170,6 +172,12 @@ public class HashTable {
             }
         }
         return text;
+    }
+
+    public void fillKeyWordHT() {
+        for (int i = 0; i < this.keywords.length; i++) {
+            this.keywords[i] = new LinkedList<>();
+        }
     }
 
     // Getters & Setters

@@ -18,7 +18,6 @@ public class App {
 
     public App() {
         this.hashTable = new HashTable(30, 300);
-        FileFunctions.updateDefaultFile();
     }
 
     /**

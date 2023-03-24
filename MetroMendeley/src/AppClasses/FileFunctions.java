@@ -52,18 +52,21 @@ public class FileFunctions {
             // Con arrayAux6 Se tiene un arreglo que contiene todas las palabras claves de ese paper. 
             arrayAux6 = arrayAux5[1].split(",");
             for (int j = 0; j < arrayAux6.length; j++) {
-                arrayAux6[j] = arrayAux6[j].replace("\n", "").replace(".", "");
+                arrayAux6[j] = arrayAux6[j].replace("\n", "").replace(".", "").strip();
                 //arrayAux6[j] = arrayAux6[j].substring(0, 1).toUpperCase() + arrayAux6[j].substring(1);
             }
             // Se crea el objeto SUMARY que contendrá todo lo anteriormente mencionado como atributo. 
-            Summary sumary = new Summary(arrayAux2[0], arrayAux4, arrayAux5[0], arrayAux6);
+            Summary summary = new Summary(arrayAux2[0], arrayAux4, arrayAux5[0], arrayAux6);
             // Se agrega el paper al hashTable 
-            int position = App.getInstance().getHashTable().addSumary(sumary);
+            int position = App.getInstance().getHashTable().addSumary(summary);
             // Se agrega los keywords al hashtable secundario (util para el requerimiento 3). 
-            App.getInstance().getHashTable().addKeyword(arrayAux6, position);
+            App.getInstance().getHashTable().addKeyword(summary.getKeywords(), position);
         }
     }
 
+    
+    ///REVISAR ESTE METODO, GUARDAR DATOS USANDO .strip()
+    
     /**
      *
      * Este método se encarga de leer un archivo de texto con un formato

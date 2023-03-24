@@ -19,6 +19,7 @@ public class MetroMendeley {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        FileFunctions.updateDefaultFile();
         AgregarResumen main = new AgregarResumen();
         main.setVisible(true);
     }
