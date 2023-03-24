@@ -14,14 +14,19 @@ public class HashTable {
     private Summary[] summaries;
     private LinkedList<Integer>[] keywords;
 
-    // Constructor vacío
     public HashTable(int i, int j) {
         this.summaries = new Summary[i];
         this.keywords = new LinkedList[j];
 
     }
 
-    // Método: Hash Function DJB2 para obtener un index del artículo científico a partir de su title. 
+    /**
+     * Calcula la función de hash DBJ2 para un título dado y lo retorna como un
+     * entero.
+     *
+     * @param title el título a utilizar para calcular el hash
+     * @return el valor del hash calculado como un entero
+     */
     public int DBJ2(String title) {
         // Se designa al comienzo el numero primo 5381 descrito por Bernstein
         long hash = 5381;
@@ -37,7 +42,13 @@ public class HashTable {
         return Long.valueOf(hash % Long.valueOf(this.getSummaries().length)).intValue();
     }
 
-    // Método: doubleHashing para el manejo de colisiones. 
+    /**
+     * Método que implementa la función Double Hashing para manejar colisiones
+     * en una tabla hash.
+     *
+     * @param title el título del artículo a agregar a la tabla hash.
+     * @return el número generado por la función Double Hashing.
+     */
     public int doubleHash(String title) {
         //Se selecciona un número primo para evitar patrones en la secuencia de saltos que se generan en caso de colisiones. 
         int prime = 31;
@@ -45,7 +56,13 @@ public class HashTable {
         return hash2;
     }
 
-    // Añadir Resumen 
+    /**
+     * Agrega un resumen de paper al hashTable.
+     *
+     * @param summary el resumen de paper a agregar al hashTable.
+     * @return el index del array en el que se agrego el summary, o -1 si no se
+     * pudo agregar.
+     */
     public int addSumary(Summary summary) {
         // Se llama al Hash function pripcipal DBJ2  
         int hash1 = DBJ2(summary.getTitle());
