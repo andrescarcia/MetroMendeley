@@ -12,12 +12,12 @@ import java.awt.Point;
  *
  * @author andre
  */
-public class BuscarKeyword extends javax.swing.JFrame {
+public class Inicio extends javax.swing.JFrame {
 
     /**
      * Creates new form Inicio
      */
-    public BuscarKeyword() {
+    public Inicio() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -56,13 +56,7 @@ public class BuscarKeyword extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         exit = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        showKeywords = new javax.swing.JTextArea();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        selectKeywordDisplay = new javax.swing.JComboBox<>();
-        jLabel20 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -165,7 +159,7 @@ public class BuscarKeyword extends javax.swing.JFrame {
 
         SidePanel.add(btn_AnalizarResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 330, 60));
 
-        btn_BuscarKeyword.setBackground(new java.awt.Color(8, 36, 75));
+        btn_BuscarKeyword.setBackground(new java.awt.Color(195, 123, 128));
         btn_BuscarKeyword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_BuscarKeywordMouseClicked(evt);
@@ -343,7 +337,7 @@ public class BuscarKeyword extends javax.swing.JFrame {
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("Seccion Buscar por Keyword");
+        jLabel17.setText("Inicio a MetroMendeley");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -366,45 +360,8 @@ public class BuscarKeyword extends javax.swing.JFrame {
 
         BG.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 650, 190));
 
-        showKeywords.setColumns(20);
-        showKeywords.setLineWrap(true);
-        showKeywords.setRows(5);
-        showKeywords.setEnabled(false);
-        jScrollPane1.setViewportView(showKeywords);
-
-        BG.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 520, 330));
-
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("A continuación tiene una lista ordenada alfabeticamente ");
-        BG.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, -1, -1));
-
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setText("Resumen:");
-        BG.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 610, -1, -1));
-
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setText("Analizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        BG.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 640, -1, 50));
-
-        selectKeywordDisplay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        selectKeywordDisplay.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectKeywordDisplayActionPerformed(evt);
-            }
-        });
-        BG.add(selectKeywordDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 640, 400, 50));
-
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setText("de las Keywords disponibles:");
-        BG.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, -1, -1));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/imageninicio.png"))); // NOI18N
+        BG.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -441,7 +398,7 @@ public class BuscarKeyword extends javax.swing.JFrame {
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
-          BuscarKeyword v2 = new BuscarKeyword();
+        BuscarKeyword v2 = new BuscarKeyword();
         v2.setVisible(true);
         this.dispose();
    
@@ -449,7 +406,7 @@ public class BuscarKeyword extends javax.swing.JFrame {
 
     private void btn_BuscarKeywordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_BuscarKeywordMouseClicked
         // TODO add your handling code here:
-        BuscarKeyword v2 = new BuscarKeyword();
+        Inicio v2 = new Inicio();
         v2.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_BuscarKeywordMouseClicked
@@ -463,7 +420,7 @@ public class BuscarKeyword extends javax.swing.JFrame {
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
-           BuscarAutor v3 = new BuscarAutor();
+          BuscarAutor v3 = new BuscarAutor();
         v3.setVisible(true);
         this.dispose();
 
@@ -471,7 +428,7 @@ public class BuscarKeyword extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-        AnalizarResumen v2 = new AnalizarResumen();
+          AnalizarResumen v2 = new AnalizarResumen();
         v2.setVisible(true);
         this.dispose();
 
@@ -496,14 +453,6 @@ public class BuscarKeyword extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_SalirGuardarMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void selectKeywordDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectKeywordDisplayActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_selectKeywordDisplayActionPerformed
-
     private void btn_AgregarResumenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AgregarResumenMouseClicked
         // TODO add your handling code here:
            AgregarResumen v2 = new AgregarResumen();
@@ -513,14 +462,15 @@ public class BuscarKeyword extends javax.swing.JFrame {
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-           Inicio v2 = new Inicio();
+          Inicio v2 = new Inicio();
         v2.setVisible(true);
         this.dispose();
+        
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
-          AgregarResumen v2 = new AgregarResumen();
+         AgregarResumen v2 = new AgregarResumen();
         v2.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
@@ -542,14 +492,30 @@ public class BuscarKeyword extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuscarKeyword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuscarKeyword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuscarKeyword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuscarKeyword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -570,7 +536,7 @@ public class BuscarKeyword extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BuscarKeyword().setVisible(true);
+                new Inicio().setVisible(true);
             }
         });
     }
@@ -585,16 +551,13 @@ public class BuscarKeyword extends javax.swing.JFrame {
     private javax.swing.JPanel btn_BuscarKeyword;
     private javax.swing.JPanel btn_SalirGuardar;
     private javax.swing.JLabel exit;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -604,9 +567,6 @@ public class BuscarKeyword extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JComboBox<String> selectKeywordDisplay;
-    private javax.swing.JTextArea showKeywords;
     // End of variables declaration//GEN-END:variables
 }
