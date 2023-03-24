@@ -4,7 +4,7 @@
  */
 package metromendeley;
 
-import GUI.classes.AgregarResumen;
+import GUI.classes.Inicio;
 
 /**
  *
@@ -17,7 +17,7 @@ public class MetroMendeley {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        AgregarResumen main = new AgregarResumen();
+        Inicio main = new Inicio();
         main.setVisible(true);
     }
     
