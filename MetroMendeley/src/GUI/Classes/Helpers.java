@@ -12,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 
 /**
+ * Funciones implementadas en las clases de GUI
  *
  * @author Angel Granado
  */
@@ -21,9 +22,12 @@ public class Helpers {
 
     /////////////////////////// METODOS USADOS EN BuscarKeyword.java  /////////////////////////////
     /**
+     * Rellena un TextArea y un jCombo con las palabras clave de los resúmenes
+     * almacenados en la tabla hash.
      *
-     * @param showInfo
-     * @param selectKeywordOptions
+     * @param showInfo el TextArea donde se muestra la información
+     * @param selectKeywordOptions el jCombo donde se muestran las opciones de
+     * palabras clave
      */
     public void fillInfoKeyWord(JTextArea showInfo, JComboBox<String> selectKeywordOptions) {
         String text = "";
@@ -39,9 +43,13 @@ public class Helpers {
     }
 
     /**
+     * Rellena el JComboBox selectPaper con los títulos de los resúmenes
+     * relacionados a la palabra clave seleccionada en selectKeywordOptions.
      *
-     * @param selectKeywordOptions
-     * @param selectPaper
+     * @param selectKeywordOptions JComboBox que contiene todas las palabras
+     * claves disponibles para buscar resúmenes.
+     * @param selectPaper JComboBox que se rellenará con los títulos de los
+     * resúmenes relacionados a la palabra clave seleccionada.
      */
     public void fillSelectPaper(JComboBox<String> selectKeywordOptions, JComboBox<String> selectPaper) {
 
@@ -81,9 +89,15 @@ public class Helpers {
     }
 
     /**
+     * Busca un paper en base al título seleccionado en el JComboBox y muestra
+     * su información en el JTextArea correspondiente. En el mejor de los casos,
+     * la busqueda es de O(1), en el peor (cuando hay una colision), es de O(n)
+     * donde n es la cantidad de ariculos registrados.
      *
-     * @param selectPaper
-     * @param showInfo
+     * @param selectPaper JComboBox que contiene los títulos de los papers
+     * relacionados con la palabra clave seleccionada.
+     * @param showInfo JTextArea en el cual se muestra la información del paper
+     * seleccionado.
      */
     public void searchPaperByKeyword(JComboBox<String> selectPaper, JTextArea showInfo) {
         String title = (String) selectPaper.getSelectedItem();
@@ -108,7 +122,6 @@ public class Helpers {
             paperSelected = app.getHashTable().getSummaries()[index];
             showInfo.setText("Informacion del Articulo Seleccionado\n\n"
                     + paperSelected.toString());
-            System.out.println(paperSelected.toString());
         }
     }
 
