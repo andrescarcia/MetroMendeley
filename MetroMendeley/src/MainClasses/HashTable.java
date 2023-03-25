@@ -110,10 +110,10 @@ public class HashTable {
             int hash1 = DBJ2(currentKeyWord);
             // Se llama al DoubleHash para el manejo de colisiones.
             int hash2 = doubleHash(currentKeyWord);
-            
+
             // Se asigna como index inicial al hash1
             int index = hash1;
-            
+
             // Se valida si esta vacío el slot. 
             if (this.getKeywords()[index].isEmpty()) {
                 this.getKeywords()[index].addEnd(position);
@@ -155,25 +155,6 @@ public class HashTable {
         return text;
     }
 
-    /**
-     * Genera un String con todas las palabras claves de los resúmenes
-     * almacenados en la colección, ordenadas alfabéticamente.
-     *
-     * @return un String con todas las palabras claves de los resúmenes
-     * almacenados en la colección, ordenadas alfabéticamente.
-     */
-    public String showKeywordsAlphabetic() {
-        String text = "";
-        for (Summary summarie : this.getSummaries()) {
-            if (summarie != null) {
-                for (String keyword : summarie.getKeywords()) {
-                    text += "-  " + keyword + "\n";
-                }
-            }
-        }
-        return text;
-    }
-
     public void fillKeyWordHT() {
         for (int i = 0; i < this.keywords.length; i++) {
             this.keywords[i] = new LinkedList<>();
@@ -209,4 +190,24 @@ public class HashTable {
         this.keywords = keywords;
     }
 
+    public Summary searchSummary(String title) {
+        int hash1 = this.DBJ2(title);
+        int hash2 = this.doubleHash(title);
+        int index = hash1;
+        Summary result = this.getSummaries()[index];
+
+        if (result != null) {
+            if (result.getTitle().equalsIgnoreCase(title)) {
+                return result;
+            } else {
+                int i = 0;
+                while (!this.getSummaries()[index].getTitle().equalsIgnoreCase(title) && i < this.getSummaries().length) {
+                    i++;
+                    index = (hash1 + i * hash2) % this.getSummaries().length;
+                }
+                return this.getSummaries()[index];
+            }
+        } 
+        return null;
+    }
 }

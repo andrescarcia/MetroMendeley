@@ -16,9 +16,9 @@ public class Summary {
     private String[] keywords;
 
     public Summary(String title, String[] authors, String body, String[] keywords) {
-        this.title = title;
+        this.title = title.strip();
         this.authors = authors;
-        this.body = body;
+        this.body = body.strip();
         this.keywords = keywords;
     }
 
@@ -109,21 +109,21 @@ public class Summary {
 
     @Override
     public String toString() {
-    String authorsString = String.join(", ", this.authors) + ".";
-    String keywordsString = String.join(", ", this.keywords) + ".";
+        String authorsString = String.join(", ", this.authors) + ".";
+        String keywordsString = String.join(", ", this.keywords) + ".";
 
-    String[] words = this.body.split("\\s+");
-    StringBuilder bodyBuilder = new StringBuilder();
+        String[] words = this.body.split("\\s+");
+        StringBuilder bodyBuilder = new StringBuilder();
 
-    for (int i = 0; i < words.length; i++) {
-        bodyBuilder.append(words[i]).append(" ");
-        if ((i+1) % 9 == 0) {
-            bodyBuilder.append("\n");
+        for (int i = 0; i < words.length; i++) {
+            bodyBuilder.append(words[i]).append(" ");
+            if ((i + 1) % 9 == 0) {
+                bodyBuilder.append("\n");
+            }
         }
+
+        return "TÍTULO: " + this.title + "\nAUTORES: " + authorsString
+                + "\n\nRESUMEN\n" + bodyBuilder.toString() + "\n\nPALABRAS CLAVES: \n" + keywordsString + "\n";
     }
-    
-    return "TÍTULO: " + this.title + "\nAUTORES: " + authorsString
-            + "\n\nRESUMEN\n" + bodyBuilder.toString() + "\n\nPALABRAS CLAVES: \n" + keywordsString;
-}
 
 }
