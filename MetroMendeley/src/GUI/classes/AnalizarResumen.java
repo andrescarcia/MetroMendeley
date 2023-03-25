@@ -19,6 +19,7 @@ public class AnalizarResumen extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.showSumarys.setEnabled(true);
     }
 
     /**

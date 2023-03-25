@@ -389,7 +389,6 @@ public class BuscarAutor extends javax.swing.JFrame {
         });
         BG.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 490, -1, 50));
 
-        selectArticuloDisplay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         selectArticuloDisplay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectArticuloDisplayActionPerformed(evt);
@@ -402,7 +401,6 @@ public class BuscarAutor extends javax.swing.JFrame {
         jLabel20.setText("de los articulos por el autor disponibles:");
         BG.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, -1, -1));
 
-        selectAutorDisplay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         selectAutorDisplay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectAutorDisplayActionPerformed(evt);
