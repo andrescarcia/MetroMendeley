@@ -45,7 +45,8 @@ public class Summary {
             }
             keywordsString += "- " + keyword.replace("\n", "") + ": Frecuencia con la cual aparece en el resumen: " + counter + " veces.\n";
         }
-        return "TÍTULO: \n" + this.title + "\n" + "AUTORES: \n" + authorsString
+        return "TÍTULO: " + this.title + "\n" + "AUTORES: " + authorsString
+                + "\n " + "\n RESUMEN: " + body 
                 + "\n" + "\n" + "PALABRAS CLAVES: \n" + keywordsString;
     }
 

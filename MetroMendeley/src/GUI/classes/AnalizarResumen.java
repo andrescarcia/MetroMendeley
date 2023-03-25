@@ -4,6 +4,7 @@
  */
 package GUI.Classes;
 
+import AppClasses.App;
 import java.awt.Point;
 
 /**
@@ -12,6 +13,12 @@ import java.awt.Point;
  */
 public class AnalizarResumen extends javax.swing.JFrame {
     private Point initialClick;
+    private Helpers helpers = new Helpers();
+    private App app = App.getInstance();
+    boolean titleSelected = false;
+    ;
+   
+    
     /**
      * Creates new form Inicio
      */
@@ -19,8 +26,10 @@ public class AnalizarResumen extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.showSumarys.setEditable(false);
+        this.helpers.fillInfoTitles(showSumarys, selectSumaryDisplay);
+        this.showSumarys.setEnabled(true);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,7 +67,7 @@ public class AnalizarResumen extends javax.swing.JFrame {
         showSumarys = new javax.swing.JTextArea();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        AnalizarBoton = new javax.swing.JButton();
         selectSumaryDisplay = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
 
@@ -392,16 +401,15 @@ public class AnalizarResumen extends javax.swing.JFrame {
         jLabel19.setText("Resumen:");
         BG.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 610, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setText("Analizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        AnalizarBoton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        AnalizarBoton.setText("Analizar");
+        AnalizarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AnalizarBotonActionPerformed(evt);
             }
         });
-        BG.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 640, -1, 50));
+        BG.add(AnalizarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 640, -1, 50));
 
-        selectSumaryDisplay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         selectSumaryDisplay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectSumaryDisplayActionPerformed(evt);
@@ -502,9 +510,24 @@ public class AnalizarResumen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_SalirGuardarMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void AnalizarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnalizarBotonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        if (!this.titleSelected){
+            this.titleSelected = true;
+            this.AnalizarBoton.setText("Quitar");
+            helpers.searchPaperByTitle(selectSumaryDisplay, showSumarys);
+            this.jLabel18.setText("A continuación tiene disponible toda la información");
+            this.jLabel20.setText("del artículo seleccionado:");
+            this.selectSumaryDisplay.setEnabled(false);
+        } else {
+            this.AnalizarBoton.setText("Analizar");
+            this.helpers.fillInfoTitles(showSumarys, selectSumaryDisplay);
+            this.titleSelected = false;
+            this.jLabel18.setText("A continuación tiene una lista ordenada alfabeticamente");
+            this.jLabel20.setText("de artículos científicos disponibles:");
+            this.selectSumaryDisplay.setEnabled(true);
+        }
+    }//GEN-LAST:event_AnalizarBotonActionPerformed
 
     private void selectSumaryDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectSumaryDisplayActionPerformed
         // TODO add your handling code here:
@@ -590,6 +613,7 @@ public class AnalizarResumen extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AnalizarBoton;
     private javax.swing.JPanel BG;
     private javax.swing.JPanel SidePanel;
     private javax.swing.JPanel btn_AgregarResumen;
@@ -598,7 +622,6 @@ public class AnalizarResumen extends javax.swing.JFrame {
     private javax.swing.JPanel btn_BuscarKeyword;
     private javax.swing.JPanel btn_SalirGuardar;
     private javax.swing.JLabel exit;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

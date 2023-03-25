@@ -9,12 +9,13 @@ import MainClasses.LinkedList;
 import MainClasses.Node;
 import MainClasses.Summary;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 /**
  * Funciones implementadas en las clases de GUI
  *
- * @author Angel Granado
+ * @author Angel Granado && Erika Hernandez
  */
 public class Helpers {
 
@@ -126,4 +127,37 @@ public class Helpers {
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////
+    
+    public void fillInfoTitles (JTextArea showInfo, JComboBox<String> selectTitleOptions){
+        String text = ""; 
+        selectTitleOptions.removeAllItems();
+        for (int i=0; i<app.getHashTable().getSummaries().length; i++){
+            if (app.getHashTable().getSummaries()[i]!=null){
+                selectTitleOptions.addItem(app.getHashTable().getSummaries()[i].getTitle());
+                text += "- " + app.getHashTable().getSummaries()[i].getTitle() + "\n";
+            }
+        showInfo.setText(text);    
+        }
+    }
+        
+    public void searchPaperByTitle(JComboBox<String> selectPaper, JTextArea showInfo) {
+       try{
+       String title = (String) selectPaper.getSelectedItem();
+       // Se determina el index de ese title con la hash function.
+       int index = app.getHashTable().DBJ2(title);
+       // Si no coinciden directamente el titulo seleccionado y el que hay en el array no se mantiene el index y se recalcula.
+       if (!app.getHashTable().getSummaries()[index].getTitle().equals(title)){
+           int i = 0;
+           int hash2 = app.getHashTable().doubleHash(title);
+           while (!app.getHashTable().getSummaries()[index].getTitle().equals(title)){
+            i++;
+            index = (index + i * hash2) % app.getHashTable().getSummaries().length;
+            }
+       }
+       showInfo.setText(app.getHashTable().getSummaries()[index].showAttr());
+       } catch (Exception e) {
+           JOptionPane.showMessageDialog(null, "No seleccionó ningún título");
+       } 
+    }
+    
 }
