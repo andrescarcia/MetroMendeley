@@ -140,21 +140,9 @@ public class HashTable {
     }
 
     /**
-     * Muestra los títulos de los artículos almacenados en el hash table en
-     * orden alfabético.
-     *
-     * @return un String con los títulos de los artículos en orden alfabético
+     * Rellena la tabla de hash de palabras clave, inicializando cada lista
+     * enlazada en cada índice de la tabla.
      */
-    public String showArticlesAlphabetic() {
-        String text = "";
-        for (int i = 0; i < this.getSummaries().length; i++) {
-            if (this.getSummaries()[i] != null) {
-                text += i + ". " + this.getSummaries()[i].getTitle() + "\n";
-            }
-        }
-        return text;
-    }
-
     public void fillKeyWordHT() {
         for (int i = 0; i < this.keywords.length; i++) {
             this.keywords[i] = new LinkedList<>();
@@ -190,6 +178,13 @@ public class HashTable {
         this.keywords = keywords;
     }
 
+    /**
+     * Busca un resumen por título utilizando la técnica de hashing doble.
+     *
+     * @param title el título del resumen a buscar.
+     * @return el objeto Summary correspondiente al título buscado, o null si no
+     * se encuentra.
+     */
     public Summary searchSummary(String title) {
         int hash1 = this.DBJ2(title);
         int hash2 = this.doubleHash(title);
@@ -207,7 +202,7 @@ public class HashTable {
                 }
                 return this.getSummaries()[index];
             }
-        } 
-        return null;
+        }
+        return result;
     }
 }

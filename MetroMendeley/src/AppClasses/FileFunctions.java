@@ -4,11 +4,13 @@
  */
 package AppClasses;
 
+import MainClasses.Node;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import javax.swing.JOptionPane;
 import MainClasses.Summary;
+import java.io.PrintWriter;
 
 /**
  *
@@ -68,6 +70,8 @@ public class FileFunctions {
             Summary summary = new Summary(arrayAux2[0].strip(), arrayAux4, arrayAux5[0], arrayAux6);
             // Se agrega el paper al hashTable 
             int position = app.getHashTable().addSumary(summary);
+
+            app.getListPositions().insertOrdered(position);
             // Se agrega los keywords al hashtable secundario (util para el requerimiento 3). 
             app.getHashTable().addKeyword(summary.getKeywords(), position);
         }
@@ -135,6 +139,7 @@ public class FileFunctions {
                     Summary summary = new Summary(arrayAux2[0], autores, arrayAux5[0], arrayAux6);
                     int position = app.getHashTable().addSumary(summary);
                     app.getHashTable().addKeyword(summary.getKeywords(), position);
+                    app.getListPositions().insertOrdered(position);
                     JOptionPane.showMessageDialog(null, "Carga exitosa!");
                 } else {
                     JOptionPane.showMessageDialog(null, "Ya existe un articulo registrado con el titulo:\n"
@@ -149,8 +154,40 @@ public class FileFunctions {
         }
     }
 
+    /**
+     * Guarda la información de los papers guardados de los papers en un archivo
+     * de texto. La información incluye el título, autores, resumen y palabras
+     * claves. Los datos se separan por líneas y se utiliza el carácter % para
+     * separar los resúmenes. Si ocurre un error durante el proceso de escritura
+     * del archivo, se muestra un mensaje de error.
+     */
     public void saveHashTable() {
-
+        String data = "";
+        Node<Integer> pAux = app.getListPositions().getpFirst();
+        int n = pAux.getTInfo();
+        while (pAux != null) {
+            Summary paper = app.getHashTable().getSummaries()[pAux.gettInfo()];
+            String title = paper.getTitle();
+            String authors = String.join("\n", paper.getAuthors());
+            String summary = paper.getBody();
+            String keywords = String.join(", ", paper.getKeywords());
+            if (pAux.getTInfo() == n) {
+                data += title + "\nAutores\n" + authors + "\nResumen\n" + summary + "\n"
+                        + "Palabras claves: " + keywords + "\n";
+            } else {
+                data += "%" + title + "\nAutores\n" + authors + "\nResumen\n" + summary + "\n"
+                        + "Palabras claves: " + keywords + "\n";
+            }
+            pAux = app.getListPositions().next(pAux);
+        }
+        try {
+            PrintWriter printWriter = new PrintWriter("test\\DefaultFile.txt");
+            printWriter.print(data);
+            printWriter.close();
+            JOptionPane.showMessageDialog(null, "El archivo ha sido guardado exitosamente!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al escribir el archivo");
+        }
     }
 
     /**

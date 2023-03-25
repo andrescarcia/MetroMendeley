@@ -5,10 +5,12 @@
 package GUI.Classes;
 
 import AppClasses.App;
+import AppClasses.FileFunctions;
 import MainClasses.LinkedList;
 import MainClasses.Node;
 import MainClasses.Summary;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
@@ -20,7 +22,98 @@ import javax.swing.JTextArea;
 public class Helpers {
 
     private final App app = App.getInstance();
+    private FileFunctions f = new FileFunctions();
 
+    /**
+     * Pregunta al usuario si desea guardar los cambios antes de salir de la
+     * aplicación. Si el usuario selecciona "Sí", se guarda la tabla hash y se
+     * cierra la aplicación. Si el usuario selecciona "No", se cierra la
+     * aplicación sin guardar la tabla hash. Si el usuario selecciona
+     * "Cancelar", no se realiza ninguna acción.
+     */
+    public void exitApp() {
+        int showConfirmDialog = JOptionPane.showConfirmDialog(null, "¿Desea guardar los cambios antes de salir?");
+        if (showConfirmDialog == 0) {
+            this.getF().saveHashTable();
+            System.exit(0);
+        } else if (showConfirmDialog == 1) {
+            System.exit(0);
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////// METODOS USADOS EN AgregarResumen.java  /////////////////////////////
+    /**
+     * Agrega un artículos a la app.
+     *
+     * @param jFileChooser el JFileChooser que permite al usuario seleccionar el
+     * archivo de texto que contiene la información del resumen.
+     */
+    public void addSummary(JFileChooser jFileChooser) {
+        if (jFileChooser.getSelectedFile() != null) {
+            String absolutePath = jFileChooser.getSelectedFile().getAbsolutePath();
+            this.getF().uploadHashTableInfo(absolutePath);
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un archivo .txt");
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////   
+    ////////////////////////// METODOS USADOS EN AnalizarResumen.java  ///////////////////////////
+    /**
+     *
+     * Llena el JTextArea con la información de los papers de los resúmenes
+     * almacenados en la aplicación. Además, llena un objeto JComboBox con los
+     * mismos títulos. Todo en forma alfabetica
+     *
+     * @param showInfo el JTextArea en el que se mostrará la información de los
+     * papers.
+     * @param selectTitleOptions el JComboBox en el que se mostrarán los
+     * títulos.
+     */
+    public void fillInfoTitles(JTextArea showInfo, JComboBox<String> selectTitleOptions) {
+        String text = "";
+        selectTitleOptions.removeAllItems();
+        Node<Integer> pAux = app.getListPositions().getpFirst();
+        while (pAux != null) {
+            String title = app.getHashTable().getSummaries()[pAux.getTInfo()].getTitle();
+            selectTitleOptions.addItem(title);
+            text += "- " + title + "\n\n";
+            pAux = app.getListPositions().next(pAux);
+        }
+        showInfo.setText(text);
+    }
+
+    /**
+     * Busca un resumen de papel según el título seleccionado en un JComboBox y
+     * muestra su información en un JTextArea.
+     *
+     * @param selectPaper JComboBox que contiene los títulos de los resúmenes de
+     * papel.
+     * @param showInfo JTextArea donde se mostrará la información del resumen de
+     * papel seleccionado.
+     */
+    public void searchPaperByTitle(JComboBox<String> selectPaper, JTextArea showInfo) {
+        try {
+            String info = "";
+            String title = (String) selectPaper.getSelectedItem();
+            Summary summary = app.getHashTable().searchSummary(title);
+            String[] keywords = summary.getKeywords();
+            String autores = String.join(", ", summary.getAuthors());
+            info += title + "\n\n" + "Autores: " + autores + "\n\nFrecuencias de las palabras claves:\n";
+
+            for (String keyword : keywords) {
+                int occurrency = summary.countOccurrences(keyword);
+                info += "-" + keyword + ": " + occurrency + "\n";
+            }
+
+            showInfo.setText(info);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No seleccionó ningún título");
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////// METODOS USADOS EN BuscarKeyword.java  /////////////////////////////
     /**
      * Rellena un TextArea y un jCombo con las palabras clave de los resúmenes
@@ -123,39 +216,19 @@ public class Helpers {
                     + paperSelected.toString());
         }
     }
+    ///////////////////////////////////////////////////////////////////////////////////////////////
 
-    //////////////////////////////////////////////////////////////////////////////////////////////
-    
-    public void fillInfoTitles (JTextArea showInfo, JComboBox<String> selectTitleOptions){
-        String text = ""; 
-        selectTitleOptions.removeAllItems();
-        for (int i=0; i<app.getHashTable().getSummaries().length; i++){
-            if (app.getHashTable().getSummaries()[i]!=null){
-                selectTitleOptions.addItem(app.getHashTable().getSummaries()[i].getTitle());
-                text += "- " + app.getHashTable().getSummaries()[i].getTitle() + "\n";
-            }
-        showInfo.setText(text);    
-        }
+    /**
+     * @return the f
+     */
+    public FileFunctions getF() {
+        return f;
     }
-        
-    public void searchPaperByTitle(JComboBox<String> selectPaper, JTextArea showInfo) {
-       try{
-       String title = (String) selectPaper.getSelectedItem();
-       // Se determina el index de ese title con la hash function.
-       int index = app.getHashTable().DBJ2(title);
-       // Si no coinciden directamente el titulo seleccionado y el que hay en el array no se mantiene el index y se recalcula.
-       if (!app.getHashTable().getSummaries()[index].getTitle().equals(title)){
-           int i = 0;
-           int hash2 = app.getHashTable().doubleHash(title);
-           while (!app.getHashTable().getSummaries()[index].getTitle().equals(title)){
-            i++;
-            index = (index + i * hash2) % app.getHashTable().getSummaries().length;
-            }
-       }
-       showInfo.setText(app.getHashTable().getSummaries()[index].showAttr());
-       } catch (Exception e) {
-           JOptionPane.showMessageDialog(null, "No seleccionó ningún título");
-       } 
+
+    /**
+     * @param f the f to set
+     */
+    public void setF(FileFunctions f) {
+        this.f = f;
     }
-    
 }
