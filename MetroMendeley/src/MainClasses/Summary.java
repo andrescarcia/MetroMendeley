@@ -22,33 +22,6 @@ public class Summary {
         this.keywords = keywords;
     }
 
-    /**
-     *
-     * Devuelve un String con la información del resumen en un formato legible
-     * para el usuario. Incluye el título, autores y palabras clave con su
-     * frecuencia de aparición en el resumen.
-     *
-     * @return String con la información del resumen.
-     */
-    public String showAttr() {
-        String authorsString = "";
-        for (String author : this.authors) {
-            authorsString += author + ", ";
-        }
-        String keywordsString = "";
-        for (String keyword : this.keywords) {
-            int counter = 0;
-            int position = this.body.toLowerCase().indexOf(keyword.toLowerCase().replace("\n", "").replace(".", ""));
-            while (position != -1) {
-                counter++;
-                position = this.body.toLowerCase().indexOf(keyword.toLowerCase().replace("\n", "").replace(".", ""), position + 1);
-            }
-            keywordsString += "- " + keyword.replace("\n", "") + ": Frecuencia con la cual aparece en el resumen: " + counter + " veces.\n";
-        }
-        return "TÍTULO: \n" + this.title + "\n" + "AUTORES: \n" + authorsString
-                + "\n" + "\n" + "PALABRAS CLAVES: \n" + keywordsString;
-    }
-
     // Getters & Setters
     /**
      * @return the title
@@ -121,8 +94,24 @@ public class Summary {
             }
         }
 
-        return "TÍTULO: " + this.title + "\nAUTORES: " + authorsString
+        return "TÍTULO: " + this.title + "\n\nAUTORES: " + authorsString
                 + "\n\nRESUMEN\n" + bodyBuilder.toString() + "\n\nPALABRAS CLAVES: \n" + keywordsString + "\n";
+    }
+
+    /**
+     * Cuenta el número de ocurrencias de una palabra en el resumen.
+     *
+     * @param word la palabra a buscar en el resumen
+     * @return el número de ocurrencias de la palabra en el resumen
+     */
+    public int countOccurrences(String word) {
+        int count = 0;
+        int index = 0;
+        while ((index = this.body.indexOf(word, index)) != -1) {
+            count++;
+            index += word.length();
+        }
+        return count;
     }
 
 }

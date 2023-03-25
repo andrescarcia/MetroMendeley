@@ -9,17 +9,73 @@ import MainClasses.LinkedList;
 import MainClasses.Node;
 import MainClasses.Summary;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 /**
  * Funciones implementadas en las clases de GUI
  *
- * @author Angel Granado
+ * @author Angel Granado && Erika Hernandez
  */
 public class Helpers {
 
     private final App app = App.getInstance();
 
+    ////////////////////////// METODOS USADOS EN AnalizarResumen.java  ///////////////////////////
+    /**
+     *
+     * Llena el JTextArea con la información de los papers de los resúmenes
+     * almacenados en la aplicación. Además, llena un objeto JComboBox con los
+     * mismos títulos. Todo en forma alfabetica
+     *
+     * @param showInfo el JTextArea en el que se mostrará la información de los
+     * papers.
+     * @param selectTitleOptions el JComboBox en el que se mostrarán los
+     * títulos.
+     */
+    public void fillInfoTitles(JTextArea showInfo, JComboBox<String> selectTitleOptions) {
+        String text = "";
+        selectTitleOptions.removeAllItems();
+        Node<Integer> pAux = app.getListPositions().getpFirst();
+        while (pAux != null) {
+            String title = app.getHashTable().getSummaries()[pAux.getTInfo()].getTitle();
+            selectTitleOptions.addItem(title);
+            text += "- " + title + "\n\n";
+            pAux = app.getListPositions().next(pAux);
+        }
+        showInfo.setText(text);
+    }
+
+    /**
+     * Busca un resumen de papel según el título seleccionado en un JComboBox y
+     * muestra su información en un JTextArea.
+     *
+     * @param selectPaper JComboBox que contiene los títulos de los resúmenes de
+     * papel.
+     * @param showInfo JTextArea donde se mostrará la información del resumen de
+     * papel seleccionado.
+     */
+    public void searchPaperByTitle(JComboBox<String> selectPaper, JTextArea showInfo) {
+        try {
+            String info = "";
+            String title = (String) selectPaper.getSelectedItem();
+            Summary summary = app.getHashTable().searchSummary(title);
+            String[] keywords = summary.getKeywords();
+            String autores = String.join(", ", summary.getAuthors());
+            info += title + "\n\n" + "Autores: " + autores + "\n\nFrecuencias de las palabras claves:\n";
+
+            for (String keyword : keywords) {
+                int occurrency = summary.countOccurrences(keyword);
+                info += "-" + keyword + ": " + occurrency + "\n";
+            }
+
+            showInfo.setText(info);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No seleccionó ningún título");
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////// METODOS USADOS EN BuscarKeyword.java  /////////////////////////////
     /**
      * Rellena un TextArea y un jCombo con las palabras clave de los resúmenes
@@ -122,6 +178,5 @@ public class Helpers {
                     + paperSelected.toString());
         }
     }
-
-    //////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
 }

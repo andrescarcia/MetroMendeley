@@ -68,6 +68,8 @@ public class FileFunctions {
             Summary summary = new Summary(arrayAux2[0].strip(), arrayAux4, arrayAux5[0], arrayAux6);
             // Se agrega el paper al hashTable 
             int position = app.getHashTable().addSumary(summary);
+            
+            app.getListPositions().insertOrdered(position);
             // Se agrega los keywords al hashtable secundario (util para el requerimiento 3). 
             app.getHashTable().addKeyword(summary.getKeywords(), position);
         }
@@ -135,6 +137,7 @@ public class FileFunctions {
                     Summary summary = new Summary(arrayAux2[0], autores, arrayAux5[0], arrayAux6);
                     int position = app.getHashTable().addSumary(summary);
                     app.getHashTable().addKeyword(summary.getKeywords(), position);
+                    app.getListPositions().insertOrdered(position);
                     JOptionPane.showMessageDialog(null, "Carga exitosa!");
                 } else {
                     JOptionPane.showMessageDialog(null, "Ya existe un articulo registrado con el titulo:\n"
@@ -148,7 +151,9 @@ public class FileFunctions {
             JOptionPane.showMessageDialog(null, "No se logró cargar el archivo. No cumple con el formato adecuado.");
         }
     }
-
+    
+    
+    // esto es para el punto 5, Tengo que terminarlo jejejeje
     public void saveHashTable() {
 
     }
