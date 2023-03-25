@@ -19,7 +19,8 @@ public class MetroMendeley {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        FileFunctions.updateDefaultFile();
+        FileFunctions f = new FileFunctions();
+        f.readDefaultFile();
         Inicio main = new Inicio();
         main.setVisible(true);
     }

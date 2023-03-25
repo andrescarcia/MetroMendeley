@@ -107,9 +107,7 @@ public class Helpers {
 
         //Si coinciden, mostramos la informacion del paper
         if (paperSelected.getTitle().strip().equalsIgnoreCase(title.strip())) {
-            showInfo.setText("Informacion del Articulo Seleccionado\n\n"
-                    + paperSelected.toString());
-            System.out.println(paperSelected.toString());
+            showInfo.setText(paperSelected.toString());
         } else {
             //Si no coinciden, hay una colision
             int hashAux = app.getHashTable().doubleHash(title);

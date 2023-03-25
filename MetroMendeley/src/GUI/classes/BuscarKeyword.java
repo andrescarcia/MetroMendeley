@@ -29,6 +29,7 @@ public class BuscarKeyword extends javax.swing.JFrame {
         this.AnalizarBoton.setEnabled(false);
         this.showInfo.setEditable(false);
         this.getHelpers().fillInfoKeyWord(this.showInfo, this.selectKeywordOptions);
+        this.showInfo.setCaretPosition(0);
     }
 
     /**
@@ -68,7 +69,6 @@ public class BuscarKeyword extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         AnalizarBoton = new javax.swing.JButton();
         selectPaper = new javax.swing.JComboBox<>();
-        jLabel20 = new javax.swing.JLabel();
         selectKeywordOptions = new javax.swing.JComboBox<>();
         BuscarBoton = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
@@ -384,8 +384,8 @@ public class BuscarKeyword extends javax.swing.JFrame {
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("A continuación tiene una lista ordenada alfabeticamente ");
-        BG.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, -1));
+        jLabel18.setText("A continuación tiene una lista de las Keywords disponibles");
+        BG.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 510, 60));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
@@ -407,11 +407,6 @@ public class BuscarKeyword extends javax.swing.JFrame {
             }
         });
         BG.add(selectPaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 640, 400, 50));
-
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setText("de las Keywords disponibles:");
-        BG.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, -1, -1));
 
         BG.add(selectKeywordOptions, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 560, 400, 50));
 
@@ -526,18 +521,18 @@ public class BuscarKeyword extends javax.swing.JFrame {
         if (!this.selectedPaper) {
             this.selectedPaper = true;
             this.getHelpers().searchPaperByKeyword(this.selectPaper, this.showInfo);
+            this.showInfo.setCaretPosition(0);
             this.AnalizarBoton.setText("Quitar");
             this.selectPaper.setEnabled(false);
-            this.jLabel18.setText("A continuación se muestra la informacion del");
-            this.jLabel20.setText("articulo seleccionado");
-
+            this.jLabel18.setText("Informacion del articulo seleccionado");
         } else {
-            this.jLabel18.setText("A continuación tiene una lista ordenada alfabeticamente");
-            this.jLabel20.setText("de las Keywords disponibles:");
+            this.jLabel18.setText("A continuación tiene una lista de las Keywords disponibles");
             this.selectedPaper = false;
             this.selectPaper.setEnabled(true);
             this.getHelpers().fillInfoKeyWord(this.showInfo, this.selectKeywordOptions);
+            this.selectKeywordOptions.removeAllItems();
             this.getHelpers().fillInfoKeyWord(showInfo, selectKeywordOptions);
+            this.showInfo.setCaretPosition(0);
             this.AnalizarBoton.setText("Analizar");
 
         }
@@ -564,6 +559,7 @@ public class BuscarKeyword extends javax.swing.JFrame {
             this.AnalizarBoton.setText("Analizar");
             this.BuscarBoton.setText("Quitar");
             getHelpers().fillSelectPaper(this.selectKeywordOptions, selectPaper);
+            this.showInfo.setCaretPosition(0);
             this.selectedPaper = false;
         } else {
             this.selectedPaper = false;
@@ -574,9 +570,10 @@ public class BuscarKeyword extends javax.swing.JFrame {
             this.selectKeywordOptions.setEnabled(true);
             this.keyWordSelected = false;
             this.selectPaper.removeAllItems();
+            this.selectKeywordOptions.removeAllItems();
             this.getHelpers().fillInfoKeyWord(showInfo, selectKeywordOptions);
-            this.jLabel18.setText("A continuación tiene una lista ordenada alfabeticamente");
-            this.jLabel20.setText("de las Keywords disponibles:");
+            this.showInfo.setCaretPosition(0);
+            this.jLabel18.setText("A continuación tiene una lista de las Keywords disponibles");
         }
     }//GEN-LAST:event_BuscarBotonActionPerformed
 
@@ -672,7 +669,6 @@ public class BuscarKeyword extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -7,13 +7,14 @@ package GUI.Classes;
 import AppClasses.FileFunctions;
 import java.awt.Point;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
  * @author andre && angel granado
  */
 public class AgregarResumen extends javax.swing.JFrame {
-
+    private FileFunctions f = new FileFunctions();
     /**
      * Creates new form Inicio
      */
@@ -21,6 +22,8 @@ public class AgregarResumen extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivo de texto (.txt)", "txt");
+        this.jFileChooser1.setFileFilter(filter);
     }
 
     /**
@@ -56,7 +59,6 @@ public class AgregarResumen extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         exit = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jFileChooser1 = new javax.swing.JFileChooser();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -377,39 +379,22 @@ public class AgregarResumen extends javax.swing.JFrame {
 
         BG.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 650, 190));
 
-        jButton1.setBackground(new java.awt.Color(34, 46, 60));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/upload-Icon.png"))); // NOI18N
-        jButton1.setText("Cargar");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        BG.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 220, -1, 70));
-
         jFileChooser1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFileChooser1ActionPerformed(evt);
             }
         });
-        BG.add(jFileChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, 530, 360));
+        BG.add(jFileChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, 550, 390));
 
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Recuerde que su archivo debe contener ");
-        BG.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, -1));
+        BG.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 500, -1));
 
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("solo un (1) artículo científico.");
-        BG.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, -1, -1));
+        BG.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 420, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -495,30 +480,18 @@ public class AgregarResumen extends javax.swing.JFrame {
         // TODO add your handling code here:
         int showConfirmDialog = JOptionPane.showConfirmDialog(null, "¿Desea guardar los cambios y salir?");
         if (showConfirmDialog == 2) {
-            FileFunctions.updateDefaultFile();
+            this.getF().saveHashTable();
         }
     }//GEN-LAST:event_btn_SalirGuardarMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        //FileFunctions.saveTxt(App.getG());
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
         // TODO add your handling code here:
-//        try {
-//            App.setSelectedFile(this.jFileChooser1.getSelectedFile());
-//            App.setSelectedPath(App.getSelectedFile().getAbsolutePath());
-//            String newData = FileFunctions.readTxt();
-//            FileFunctions.loadData(newData);
-//            JOptionPane.showMessageDialog(null, "Carga Exitosa!");
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "Error al cargar los datos. Revise el formato del archivo.");
-//        }
+        if (this.jFileChooser1.getSelectedFile() != null) {
+            String absolutePath = this.jFileChooser1.getSelectedFile().getAbsolutePath();
+            this.getF().uploadHashTableInfo(absolutePath);
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un archivo .txt");
+        }
     }//GEN-LAST:event_jFileChooser1ActionPerformed
 
     private void btn_AgregarResumenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AgregarResumenMouseClicked
@@ -611,7 +584,6 @@ public class AgregarResumen extends javax.swing.JFrame {
     private javax.swing.JPanel btn_BuscarKeyword;
     private javax.swing.JPanel btn_SalirGuardar;
     private javax.swing.JLabel exit;
-    private javax.swing.JButton jButton1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -632,4 +604,18 @@ public class AgregarResumen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the f
+     */
+    public FileFunctions getF() {
+        return f;
+    }
+
+    /**
+     * @param f the f to set
+     */
+    public void setF(FileFunctions f) {
+        this.f = f;
+    }
 }
