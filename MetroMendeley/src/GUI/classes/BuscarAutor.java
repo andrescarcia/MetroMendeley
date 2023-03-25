@@ -2,11 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package GUI.classes;
+package GUI.Classes;
 
 import java.awt.Point;
-
-
 
 /**
  *
@@ -93,13 +91,13 @@ public class BuscarAutor extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Agregar Resumen");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
-            }
-        });
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/agregar-Icon.png"))); // NOI18N
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_AgregarResumenLayout = new javax.swing.GroupLayout(btn_AgregarResumen);
         btn_AgregarResumen.setLayout(btn_AgregarResumenLayout);
@@ -183,6 +181,11 @@ public class BuscarAutor extends javax.swing.JFrame {
         });
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/keywordIcon.png"))); // NOI18N
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_BuscarKeywordLayout = new javax.swing.GroupLayout(btn_BuscarKeyword);
         btn_BuscarKeyword.setLayout(btn_BuscarKeywordLayout);
@@ -459,23 +462,22 @@ public class BuscarAutor extends javax.swing.JFrame {
         BuscarKeyword v3 = new BuscarKeyword();
         v3.setVisible(true);
         this.dispose();
-        
+
     }//GEN-LAST:event_btn_BuscarKeywordMouseClicked
 
     private void btn_BuscarAutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_BuscarAutorMouseClicked
         // TODO add your handling code here:
-          BuscarAutor v3 = new BuscarAutor();
+        BuscarAutor v3 = new BuscarAutor();
         v3.setVisible(true);
         this.dispose();
-     
+
     }//GEN-LAST:event_btn_BuscarAutorMouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
-           BuscarAutor v3 = new BuscarAutor();
+        BuscarAutor v3 = new BuscarAutor();
         v3.setVisible(true);
         this.dispose();
-       
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
@@ -483,12 +485,11 @@ public class BuscarAutor extends javax.swing.JFrame {
         AnalizarResumen v2 = new AnalizarResumen();
         v2.setVisible(true);
         this.dispose();
-        
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void btn_AnalizarResumenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AnalizarResumenMouseClicked
         // TODO add your handling code here:
-          AnalizarResumen v3 = new AnalizarResumen();
+        AnalizarResumen v3 = new AnalizarResumen();
         v3.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_AnalizarResumenMouseClicked
@@ -503,7 +504,7 @@ public class BuscarAutor extends javax.swing.JFrame {
 
     private void btn_SalirGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SalirGuardarMouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btn_SalirGuardarMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -512,48 +513,62 @@ public class BuscarAutor extends javax.swing.JFrame {
 
     private void selectArticuloDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectArticuloDisplayActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_selectArticuloDisplayActionPerformed
 
     private void selectAutorDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectAutorDisplayActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_selectAutorDisplayActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btn_AgregarResumenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AgregarResumenMouseClicked
         // TODO add your handling code here:
-         AgregarResumen v3 = new AgregarResumen();
+        AgregarResumen v3 = new AgregarResumen();
         v3.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_AgregarResumenMouseClicked
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
-          BuscarKeyword v2 = new BuscarKeyword();
-        v2.setVisible(true);
+        BuscarKeyword v3 = new BuscarKeyword();
+        v3.setVisible(true);
         this.dispose();
 
     }//GEN-LAST:event_jLabel10MouseClicked
 
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        // TODO add your handling code here:
+        BuscarKeyword v3 = new BuscarKeyword();
+        v3.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {                                     
+        // TODO add your handling code here:
+        AgregarResumen v3 = new AgregarResumen();
+        v3.setVisible(true);
+        this.dispose();
+    }                                    
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        // TODO add your handling code here:
+        AgregarResumen v3 = new AgregarResumen();
+        v3.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel9MouseClicked
+
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-           Inicio v2 = new Inicio();
+        Inicio v2 = new Inicio();
         v2.setVisible(true);
         this.dispose();
-        
-    }//GEN-LAST:event_jLabel3MouseClicked
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        // TODO add your handling code here:
-          AgregarResumen v2 = new AgregarResumen();
-        v2.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
      * @param args the command line arguments

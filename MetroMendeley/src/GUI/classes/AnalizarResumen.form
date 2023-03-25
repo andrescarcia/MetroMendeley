@@ -138,6 +138,9 @@
                       <Image iconType="3" name="/GUI/images/agregar-Icon.png"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel9MouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -267,6 +270,9 @@
                       <Image iconType="3" name="/GUI/images/keywordIcon.png"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BuscarPorKw"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

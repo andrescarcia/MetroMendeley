@@ -1,12 +1,12 @@
+package GUI.Classes;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package GUI.classes;
+
 
 import java.awt.Point;
-
-
 
 /**
  *
@@ -401,7 +401,7 @@ public class Inicio extends javax.swing.JFrame {
         BuscarKeyword v2 = new BuscarKeyword();
         v2.setVisible(true);
         this.dispose();
-   
+
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void btn_BuscarKeywordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_BuscarKeywordMouseClicked
@@ -420,7 +420,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
-          BuscarAutor v3 = new BuscarAutor();
+        BuscarAutor v3 = new BuscarAutor();
         v3.setVisible(true);
         this.dispose();
 
@@ -428,7 +428,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-          AnalizarResumen v2 = new AnalizarResumen();
+        AnalizarResumen v2 = new AnalizarResumen();
         v2.setVisible(true);
         this.dispose();
 
@@ -455,22 +455,22 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btn_AgregarResumenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AgregarResumenMouseClicked
         // TODO add your handling code here:
-           AgregarResumen v2 = new AgregarResumen();
+        AgregarResumen v2 = new AgregarResumen();
         v2.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_AgregarResumenMouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-          Inicio v2 = new Inicio();
+        Inicio v2 = new Inicio();
         v2.setVisible(true);
         this.dispose();
-        
+
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
-         AgregarResumen v2 = new AgregarResumen();
+        AgregarResumen v2 = new AgregarResumen();
         v2.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
