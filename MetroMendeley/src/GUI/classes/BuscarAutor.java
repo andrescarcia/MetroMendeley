@@ -12,6 +12,8 @@ import java.awt.Point;
  */
 public class BuscarAutor extends javax.swing.JFrame {
 
+    private Helpers helpers = new Helpers();
+
     /**
      * Creates new form Inicio
      */
@@ -268,6 +270,11 @@ public class BuscarAutor extends javax.swing.JFrame {
         });
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/saliryguardar-Icon.png"))); // NOI18N
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel15MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_SalirGuardarLayout = new javax.swing.GroupLayout(btn_SalirGuardar);
         btn_SalirGuardar.setLayout(btn_SalirGuardarLayout);
@@ -438,8 +445,7 @@ public class BuscarAutor extends javax.swing.JFrame {
 
     private void exitMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMousePressed
         // TODO add your handling code here:
-        System.exit(0);
-
+        this.getHelpers().exitApp();
     }//GEN-LAST:event_exitMousePressed
     private Point initialClick;
 
@@ -498,11 +504,12 @@ public class BuscarAutor extends javax.swing.JFrame {
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
         // TODO add your handling code here:
+        this.getHelpers().exitApp();
     }//GEN-LAST:event_jLabel14MouseClicked
 
     private void btn_SalirGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SalirGuardarMouseClicked
         // TODO add your handling code here:
-
+        this.getHelpers().exitApp();
     }//GEN-LAST:event_btn_SalirGuardarMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -546,12 +553,12 @@ public class BuscarAutor extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel8MouseClicked
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {                                     
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
         AgregarResumen v3 = new AgregarResumen();
         v3.setVisible(true);
         this.dispose();
-    }                                    
+    }
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
@@ -567,6 +574,11 @@ public class BuscarAutor extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        // TODO add your handling code here:
+        this.getHelpers().exitApp();
+    }//GEN-LAST:event_jLabel15MouseClicked
 
     /**
      * @param args the command line arguments
@@ -634,6 +646,19 @@ public class BuscarAutor extends javax.swing.JFrame {
         });
     }
 
+    /**
+     * @return the helpers
+     */
+    public Helpers getHelpers() {
+        return helpers;
+    }
+
+    /**
+     * @param helpers the helpers to set
+     */
+    public void setHelpers(Helpers helpers) {
+        this.helpers = helpers;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BG;

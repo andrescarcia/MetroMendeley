@@ -5,10 +5,12 @@
 package GUI.Classes;
 
 import AppClasses.App;
+import AppClasses.FileFunctions;
 import MainClasses.LinkedList;
 import MainClasses.Node;
 import MainClasses.Summary;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
@@ -20,7 +22,43 @@ import javax.swing.JTextArea;
 public class Helpers {
 
     private final App app = App.getInstance();
+    private FileFunctions f = new FileFunctions();
 
+    /**
+     * Pregunta al usuario si desea guardar los cambios antes de salir de la
+     * aplicación. Si el usuario selecciona "Sí", se guarda la tabla hash y se
+     * cierra la aplicación. Si el usuario selecciona "No", se cierra la
+     * aplicación sin guardar la tabla hash. Si el usuario selecciona
+     * "Cancelar", no se realiza ninguna acción.
+     */
+    public void exitApp() {
+        int showConfirmDialog = JOptionPane.showConfirmDialog(null, "¿Desea guardar los cambios antes de salir?");
+        if (showConfirmDialog == 0) {
+            this.getF().saveHashTable();
+            System.exit(0);
+        } else if (showConfirmDialog == 1) {
+            System.exit(0);
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////// METODOS USADOS EN AgregarResumen.java  /////////////////////////////
+    /**
+     * Agrega un artículos a la app.
+     *
+     * @param jFileChooser el JFileChooser que permite al usuario seleccionar el
+     * archivo de texto que contiene la información del resumen.
+     */
+    public void addSummary(JFileChooser jFileChooser) {
+        if (jFileChooser.getSelectedFile() != null) {
+            String absolutePath = jFileChooser.getSelectedFile().getAbsolutePath();
+            this.getF().uploadHashTableInfo(absolutePath);
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un archivo .txt");
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////   
     ////////////////////////// METODOS USADOS EN AnalizarResumen.java  ///////////////////////////
     /**
      *
@@ -179,4 +217,18 @@ public class Helpers {
         }
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * @return the f
+     */
+    public FileFunctions getF() {
+        return f;
+    }
+
+    /**
+     * @param f the f to set
+     */
+    public void setF(FileFunctions f) {
+        this.f = f;
+    }
 }

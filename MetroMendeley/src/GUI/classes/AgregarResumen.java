@@ -4,9 +4,7 @@
  */
 package GUI.Classes;
 
-import AppClasses.FileFunctions;
 import java.awt.Point;
-import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -14,7 +12,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author andre && angel granado
  */
 public class AgregarResumen extends javax.swing.JFrame {
-    private FileFunctions f = new FileFunctions();
+
+    private Helpers helpers = new Helpers();
+
     /**
      * Creates new form Inicio
      */
@@ -277,6 +277,11 @@ public class AgregarResumen extends javax.swing.JFrame {
         });
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/saliryguardar-Icon.png"))); // NOI18N
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel15MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_SalirGuardarLayout = new javax.swing.GroupLayout(btn_SalirGuardar);
         btn_SalirGuardar.setLayout(btn_SalirGuardarLayout);
@@ -474,24 +479,17 @@ public class AgregarResumen extends javax.swing.JFrame {
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
         // TODO add your handling code here:
+
     }//GEN-LAST:event_jLabel14MouseClicked
 
     private void btn_SalirGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SalirGuardarMouseClicked
         // TODO add your handling code here:
-        int showConfirmDialog = JOptionPane.showConfirmDialog(null, "¿Desea guardar los cambios y salir?");
-        if (showConfirmDialog == 2) {
-            this.getF().saveHashTable();
-        }
+        this.getHelpers().exitApp();
     }//GEN-LAST:event_btn_SalirGuardarMouseClicked
 
     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
         // TODO add your handling code here:
-        if (this.jFileChooser1.getSelectedFile() != null) {
-            String absolutePath = this.jFileChooser1.getSelectedFile().getAbsolutePath();
-            this.getF().uploadHashTableInfo(absolutePath);
-        } else {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un archivo .txt");
-        }
+        this.getHelpers().addSummary(this.jFileChooser1);
     }//GEN-LAST:event_jFileChooser1ActionPerformed
 
     private void btn_AgregarResumenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AgregarResumenMouseClicked
@@ -501,7 +499,7 @@ public class AgregarResumen extends javax.swing.JFrame {
 
     private void exitMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMousePressed
         // TODO add your handling code here:
-        System.exit(0);
+        this.getHelpers().exitApp();
     }//GEN-LAST:event_exitMousePressed
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
@@ -538,6 +536,11 @@ public class AgregarResumen extends javax.swing.JFrame {
         v2.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        // TODO add your handling code here:
+        this.getHelpers().exitApp();
+    }//GEN-LAST:event_jLabel15MouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -606,16 +609,17 @@ public class AgregarResumen extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     /**
-     * @return the f
+     * @return the helpers
      */
-    public FileFunctions getF() {
-        return f;
+    public Helpers getHelpers() {
+        return helpers;
     }
 
     /**
-     * @param f the f to set
+     * @param helpers the helpers to set
      */
-    public void setF(FileFunctions f) {
-        this.f = f;
+    public void setHelpers(Helpers helpers) {
+        this.helpers = helpers;
     }
+
 }
