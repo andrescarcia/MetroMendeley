@@ -151,6 +151,7 @@ public class HashTable {
      */
     public void fillHT(LinkedList<Integer>[] array) {
         for (int i = 0; i < array.length; i++) {
+            
             array[i] = new LinkedList<>();
         }
     }

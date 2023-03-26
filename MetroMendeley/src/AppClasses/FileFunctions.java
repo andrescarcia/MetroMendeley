@@ -79,7 +79,7 @@ public class FileFunctions {
             app.getListPositions().insertOrdered(position);
 
             // se guarda por autores
-            app.getHashTable().addInAuxHT(app.getHashTable().getAuthors(), summary.getAutor(), position);
+            app.getHashTable().addInAuxHT(app.getHashTable().getAuthors(), summary.getAuthors(), position);
 
         }
     }
@@ -154,7 +154,7 @@ public class FileFunctions {
                     app.getListPositions().insertOrdered(position);
 
                     // se guarda por autores
-                    app.getHashTable().addInAuxHT(app.getHashTable().getAuthors(), summary.getAutor(), position);
+                    app.getHashTable().addInAuxHT(app.getHashTable().getAuthors(), summary.getAuthors(), position);
 
                     JOptionPane.showMessageDialog(null, "Carga exitosa!");
                 } else {
@@ -184,7 +184,7 @@ public class FileFunctions {
         while (pAux != null) {
             Summary paper = app.getHashTable().getSummaries()[pAux.gettInfo()];
             String title = paper.getTitle();
-            String authors = String.join("\n", paper.getAutor());
+            String authors = String.join("\n", paper.getAuthors());
             String summary = paper.getBody();
             String keywords = String.join(", ", paper.getKeywords());
             if (pAux.getTInfo() == n) {

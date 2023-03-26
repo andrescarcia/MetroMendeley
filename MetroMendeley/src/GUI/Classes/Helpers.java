@@ -99,7 +99,7 @@ public class Helpers {
             String title = (String) selectPaper.getSelectedItem();
             Summary summary = app.getHashTable().searchSummary(title);
             String[] keywords = summary.getKeywords();
-            String autores = String.join(", ", summary.getAutor());
+            String autores = String.join(", ", summary.getAuthors());
             info += title + "\n\n" + "Autores: " + autores + "\n\nFrecuencias de las palabras claves:\n";
 
             for (String keyword : keywords) {
@@ -146,7 +146,8 @@ public class Helpers {
      * resúmenes relacionados a la palabra clave seleccionada.
      */
     public void fillSelectPaper(JComboBox<String> selectKeywordOptions, JComboBox<String> selectPaper) {
-
+        
+        
         String keyWordSelected = (String) selectKeywordOptions.getSelectedItem();
         int firstHash = app.getHashTable().DBJ2(keyWordSelected);
         int indexKeyWord = firstHash;
@@ -236,7 +237,7 @@ public class Helpers {
     }
 
     public void fillInfoPapers(JComboBox<String> selectAutorDisplay, JComboBox<String> selectArticuloDisplay) {
-        
+        selectArticuloDisplay.removeAllItems();
         String author = (String) selectAutorDisplay.getSelectedItem();
         int firstHash = app.getHashTable().DBJ2(author);
         int indexKeyWord = firstHash;
