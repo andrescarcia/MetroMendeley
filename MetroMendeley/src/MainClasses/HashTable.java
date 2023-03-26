@@ -182,24 +182,8 @@ public class HashTable {
      */
     public void setKeywords(LinkedList<Integer>[] keywords) {
         this.keywords = keywords;
-    }
-     /**
-     * @return the Autor
-     */
-    public LinkedList<Integer>[] getAutor() {
-        return this.autor;
-    }
+    }  
     
-    /**
-     * @param autor the keywords to set
-     */
-    
-    public void setAutor(LinkedList<Integer>[] autor) {
-        this.keywords = autor;
-    }
-    
-    
-
     /**
      * Busca un resumen por título utilizando la técnica de hashing doble.
      *

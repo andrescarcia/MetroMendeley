@@ -99,7 +99,7 @@ public class Helpers {
             String title = (String) selectPaper.getSelectedItem();
             Summary summary = app.getHashTable().searchSummary(title);
             String[] keywords = summary.getKeywords();
-            String autores = String.join(", ", summary.getAuthors());
+            String autores = String.join(", ", summary.getAutor());
             info += title + "\n\n" + "Autores: " + autores + "\n\nFrecuencias de las palabras claves:\n";
 
             for (String keyword : keywords) {
