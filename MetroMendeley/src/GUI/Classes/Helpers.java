@@ -99,7 +99,7 @@ public class Helpers {
             String title = (String) selectPaper.getSelectedItem();
             Summary summary = app.getHashTable().searchSummary(title);
             String[] keywords = summary.getKeywords();
-            String autores = String.join(", ", summary.getAuthors());
+            String autores = String.join(", ", summary.getAutor());
             info += title + "\n\n" + "Autores: " + autores + "\n\nFrecuencias de las palabras claves:\n";
 
             for (String keyword : keywords) {
@@ -128,6 +128,7 @@ public class Helpers {
         for (LinkedList<Integer> pAux : app.getHashTable().getKeywords()) {
             if (!pAux.isEmpty()) {
                 String keyword = pAux.getpFirst().getKey();
+                System.out.println(keyword);
                 selectKeywordOptions.addItem(keyword.strip());
                 text += "-" + keyword.strip() + "\n";
             }
