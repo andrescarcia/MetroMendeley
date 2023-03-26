@@ -17,7 +17,7 @@ public class App {
     private static App app;
 
     public App() {
-        this.hashTable = new HashTable(30, 300);
+        this.hashTable = new HashTable(30, 300 , 300);
     }
 
     /**
