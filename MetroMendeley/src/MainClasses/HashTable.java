@@ -14,14 +14,14 @@ public class HashTable {
     private Summary[] summaries;
     private LinkedList<Integer>[] keywords;
 
-    private LinkedList<Integer>[] authors;
+    private LinkedList<Integer>[] Authors;
 
     public HashTable(int i, int j, int k) {
         this.summaries = new Summary[i];
         this.keywords = new LinkedList[j];
-        this.authors = new LinkedList[k];
+        this.Authors = new LinkedList[k];
         this.fillHT(this.keywords);
-        this.fillHT(this.authors);
+        this.fillHT(this.Authors);
 
     }
 
@@ -187,7 +187,7 @@ public class HashTable {
      * @return the Autor
      */
     public LinkedList<Integer>[] getAutor() {
-        return this.autor;
+        return this.Authors;
     }
     
     /**
@@ -232,13 +232,13 @@ public class HashTable {
      * @return the authors
      */
     public LinkedList<Integer>[] getAuthors() {
-        return authors;
+        return Authors;
     }
 
     /**
      * @param authors the authors to set
      */
     public void setAuthors(LinkedList<Integer>[] authors) {
-        this.authors = authors;
+        this.Authors = authors;
     }
 }
