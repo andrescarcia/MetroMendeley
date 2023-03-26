@@ -72,6 +72,7 @@ public class FileFunctions {
             int position = app.getHashTable().addSumary(summary);
 
             // Se agrega los keywords al hashtable secundario (util para el requerimiento 3). 
+
             app.getHashTable().addInAuxHT(app.getHashTable().getKeywords(), summary.getKeywords(), position);
 
             // se guarda por orden alfabetico
