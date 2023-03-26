@@ -70,6 +70,8 @@ public class FileFunctions {
             int position = app.getHashTable().addSumary(summary);
             // Se agrega los keywords al hashtable secundario (util para el requerimiento 3). 
             app.getHashTable().addKeyword(summary.getKeywords(), position);
+             // Se agrega los keywords al hashtable secundario (util para el requerimiento 3). 
+            app.getHashTable().addAutor(summary.getAutor(), position);
         }
     }
 

@@ -13,10 +13,12 @@ public class HashTable {
 
     private Summary[] summaries;
     private LinkedList<Integer>[] keywords;
+    private LinkedList<Integer>[] autor;
 
-    public HashTable(int i, int j) {
+    public HashTable(int i, int j, int a) {
         this.summaries = new Summary[i];
         this.keywords = new LinkedList[j];
+        this.autor = new LinkedList[a];
         this.fillKeyWordHT();
     }
 
@@ -138,7 +140,57 @@ public class HashTable {
             }
         }
     }
+    /**
+     *
+     * Agrega un autor a la tabla hash de autores de los summaries. Si el autor
+     * ya existe en la tabla, se agrega la posición del resumen a la lista de
+     * posiciones del autor.
+     *
+     * @param author el autor a agregar a la tabla hash
+     * @param position la posición del resumen al que pertenece el autor en el
+     * arreglo de resúmenes
+     */
+    public void addAuthor(String author, int position) {
+        // Se llama al Hash function pripcipal DBJ2  
+        int hash1 = DBJ2(author);
+        // Se llama al DoubleHash para el manejo de colisiones.
+        int hash2 = doubleHash(author);
 
+        // Se asigna como index inicial al hash1
+        int index = hash1;
+
+        // Se valida si esta vacío el slot. 
+        if (this.getAutor()[index].isEmpty()) {
+            this.getAutor()[index].addEnd(position);
+            this.getAutor()[index].getpFirst().setKey(author.strip());
+
+            // Si no esta vacio se valida si se esta intentado meter el mismo int (index del title) ya cargado.
+        } else {
+            // si el author coincide con el key del primer nodo de la lista, entonces se agrega al final de la lista
+            if (author.strip().equalsIgnoreCase(this.getAutor()[index].getpFirst().getKey().strip())) {
+                this.getAutor()[index].getpFirst().addEnd(position);
+                // si no coincide se busca el autor en la lista para agregarlo o crear uno nuevo.
+            } else {
+                // Se itera hasta que la palabra clave este en el array. 
+                while (this.getAutor()[index] != null) {
+                    // Se recorre la lista hasta encontrar el autor
+                    for (Node<Integer> node : this.getAutor()[index]) {
+                        if (node.getKey().equalsIgnoreCase(author)) {
+                            LinkedList.addEnd(position);
+                            break;
+                        }
+                    }
+                    int a = 0;
+                    a++;
+                    // Se asigna index nuevo usando metodo double hashing.
+                    index = (hash1 + a * hash2) % this.getAutor().length;
+                }
+                // Si el autor no está en la tabla, se crea una nueva lista y se agrega al index correspondiente. 
+                this.getAutor()[index].addEnd(position);
+                this.getAutor()[index].getpFirst().setKey(author.strip());
+            }
+        }
+    }
     /**
      * Muestra los títulos de los artículos almacenados en el hash table en
      * orden alfabético.
@@ -189,6 +241,22 @@ public class HashTable {
     public void setKeywords(LinkedList<Integer>[] keywords) {
         this.keywords = keywords;
     }
+     /**
+     * @return the Autor
+     */
+    public LinkedList<Integer>[] getAutor() {
+        return this.autor;
+    }
+    
+    /**
+     * @param autor the keywords to set
+     */
+    
+    public void setAutor(LinkedList<Integer>[] autor) {
+        this.keywords = autor;
+    }
+    
+    
 
     public Summary searchSummary(String title) {
         int hash1 = this.DBJ2(title);
