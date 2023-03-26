@@ -21,6 +21,7 @@ public class BuscarAutor extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.getHelpers().fillInfoAuthors(this.selectAutorDisplay);
     }
 
     /**
@@ -528,6 +529,7 @@ public class BuscarAutor extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        this.getHelpers().fillInfoPapers(this.selectAutorDisplay, this.selectArticuloDisplay);
 
     }//GEN-LAST:event_jButton2ActionPerformed
 

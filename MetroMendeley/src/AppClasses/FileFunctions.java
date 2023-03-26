@@ -71,11 +71,16 @@ public class FileFunctions {
             // Se agrega el paper al hashTable 
             int position = app.getHashTable().addSumary(summary);
 
-            app.getListPositions().insertOrdered(position);
             // Se agrega los keywords al hashtable secundario (util para el requerimiento 3). 
-            app.getHashTable().addKeyword(summary.getKeywords(), position);
-             // Se agrega los keywords al hashtable secundario (util para el requerimiento 3). 
-            app.getHashTable().addAutor(summary.getAutor(), position);
+
+            app.getHashTable().addInAuxHT(app.getHashTable().getKeywords(), summary.getKeywords(), position);
+
+            // se guarda por orden alfabetico
+            app.getListPositions().insertOrdered(position);
+
+            // se guarda por autores
+            app.getHashTable().addInAuxHT(app.getHashTable().getAuthors(), summary.getAuthors(), position);
+
         }
     }
 
@@ -139,9 +144,18 @@ public class FileFunctions {
 
                     // Se crea el objeto SUMMARY que contendrá todo lo anteriormente mencionado como atributo. 
                     Summary summary = new Summary(arrayAux2[0], autores, arrayAux5[0], arrayAux6);
+                    // Se agrega el paper al hashTable 
                     int position = app.getHashTable().addSumary(summary);
-                    app.getHashTable().addKeyword(summary.getKeywords(), position);
+
+                    // Se agrega los keywords al hashtable secundario (util para el requerimiento 3). 
+                    app.getHashTable().addInAuxHT(app.getHashTable().getKeywords(), summary.getKeywords(), position);
+
+                    // se guarda por orden alfabetico
                     app.getListPositions().insertOrdered(position);
+
+                    // se guarda por autores
+                    app.getHashTable().addInAuxHT(app.getHashTable().getAuthors(), summary.getAuthors(), position);
+
                     JOptionPane.showMessageDialog(null, "Carga exitosa!");
                 } else {
                     JOptionPane.showMessageDialog(null, "Ya existe un articulo registrado con el titulo:\n"
