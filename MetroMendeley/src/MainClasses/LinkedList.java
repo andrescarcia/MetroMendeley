@@ -598,5 +598,6 @@ public class LinkedList<T> {
     public void setiSize(int iSize) {
         this.iSize = iSize;
     }
+    
 
 }

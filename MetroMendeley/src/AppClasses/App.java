@@ -5,6 +5,7 @@
 package AppClasses;
 
 import MainClasses.HashTable;
+import MainClasses.PapersPositionsList;
 
 /**
  * Descipción: Clase App
@@ -15,9 +16,12 @@ public class App {
 
     private HashTable hashTable;
     private static App app;
+    private PapersPositionsList listPositions;
+  
 
     public App() {
-        this.hashTable = new HashTable(30, 300 , 300);
+        this.hashTable = new HashTable(30, 300, 300);
+        this.listPositions = new PapersPositionsList();
     }
 
     /**
@@ -45,4 +49,22 @@ public class App {
     public void setHashTable(HashTable hashTable) {
         this.hashTable = hashTable;
     }
+
+    /**
+     * @return the listPositions
+     */
+    public PapersPositionsList getListPositions() {
+        return listPositions;
+    }
+
+    /**
+     * @param listPositions the listPositions to set
+     */
+    public void setListPositions(PapersPositionsList listPositions) {
+        this.listPositions = listPositions;
+    }
+
+
+    
+    
 }
