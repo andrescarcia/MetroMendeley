@@ -128,6 +128,7 @@ public class Helpers {
         for (LinkedList<Integer> pAux : app.getHashTable().getKeywords()) {
             if (!pAux.isEmpty()) {
                 String keyword = pAux.getpFirst().getKey();
+                System.out.println(keyword);
                 selectKeywordOptions.addItem(keyword.strip());
                 text += "-" + keyword.strip() + "\n";
             }

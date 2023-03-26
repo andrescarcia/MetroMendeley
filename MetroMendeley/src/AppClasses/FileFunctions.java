@@ -54,7 +54,7 @@ public class FileFunctions {
 
             //quitamos los espacios
             for (int i = 0; i < arrayAux4.length; i++) {
-                arrayAux4[i] = arrayAux4[i].strip();
+                arrayAux4[i] = arrayAux4[i].strip().replace(".", "");
             }
 
             // Con arrayAux5[0] se accede al resumen del paper. 
