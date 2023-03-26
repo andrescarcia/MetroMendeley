@@ -25,7 +25,7 @@ public class FileFunctions {
      * artículos.
      */
     public void readDefaultFile() {
-        String path = "test\\DefaultFile.txt";
+        String path = "test//DefaultFile.txt";
         String line;
         String txt = "";
 
@@ -197,7 +197,7 @@ public class FileFunctions {
             pAux = app.getListPositions().next(pAux);
         }
         try {
-            PrintWriter printWriter = new PrintWriter("test\\DefaultFile.txt");
+            PrintWriter printWriter = new PrintWriter("test//DefaultFile.txt");
             printWriter.print(data);
             printWriter.close();
             JOptionPane.showMessageDialog(null, "El archivo ha sido guardado exitosamente!");
