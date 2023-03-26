@@ -4,7 +4,11 @@
  */
 package GUI.Classes;
 
+import java.awt.Dimension;
 import java.awt.Point;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -514,7 +518,13 @@ public class BuscarAutor extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_SalirGuardarMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
+        String mensaje = getHelpers().searchPaperByTitle(selectArticuloDisplay, JTextArea);
+        JTextArea textArea = new JTextArea(mensaje);
+        textArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setPreferredSize(new Dimension(400, 300));
+        JOptionPane.showMessageDialog(this, scrollPane, "Resumen", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void selectArticuloDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectArticuloDisplayActionPerformed
@@ -524,12 +534,20 @@ public class BuscarAutor extends javax.swing.JFrame {
 
     private void selectAutorDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectAutorDisplayActionPerformed
         // TODO add your handling code here:
+        
 
     }//GEN-LAST:event_selectAutorDisplayActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.getHelpers().fillInfoPapers(this.selectAutorDisplay, this.selectArticuloDisplay);
+        if (selectAutorDisplay.isEnabled()) {
+            selectAutorDisplay.setEnabled(false);
+            jButton2.setText("Quitar");
+        } else {
+            selectAutorDisplay.setEnabled(true);
+            jButton2.setText("Siguiente");
+        }
 
     }//GEN-LAST:event_jButton2ActionPerformed
 

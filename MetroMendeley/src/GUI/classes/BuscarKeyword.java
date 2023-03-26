@@ -414,6 +414,11 @@ public class BuscarKeyword extends javax.swing.JFrame {
         });
         BG.add(selectPaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 640, 400, 50));
 
+        selectKeywordOptions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectKeywordOptionsActionPerformed(evt);
+            }
+        });
         BG.add(selectKeywordOptions, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 560, 400, 50));
 
         BuscarBoton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -640,6 +645,10 @@ public class BuscarKeyword extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.getHelpers().exitApp();
     }//GEN-LAST:event_jLabel15MouseClicked
+
+    private void selectKeywordOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectKeywordOptionsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectKeywordOptionsActionPerformed
 
     /**
      * @param args the command line arguments
