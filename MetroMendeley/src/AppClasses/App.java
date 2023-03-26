@@ -20,7 +20,7 @@ public class App {
   
 
     public App() {
-        this.hashTable = new HashTable(30, 300);
+        this.hashTable = new HashTable(30, 300, 300);
         this.listPositions = new PapersPositionsList();
     }
 

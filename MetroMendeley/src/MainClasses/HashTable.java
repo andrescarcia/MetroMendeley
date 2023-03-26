@@ -13,11 +13,14 @@ public class HashTable {
 
     private Summary[] summaries;
     private LinkedList<Integer>[] keywords;
+    private LinkedList<Integer>[] authors;
 
-    public HashTable(int i, int j) {
+    public HashTable(int i, int j, int k) {
         this.summaries = new Summary[i];
         this.keywords = new LinkedList[j];
-        this.fillKeyWordHT();
+        this.authors = new LinkedList[k];
+        this.fillHT(this.keywords);
+        this.fillHT(this.authors);
     }
 
     /**
@@ -93,59 +96,60 @@ public class HashTable {
     }
 
     /**
+     * Agrega la posición de un paper en una hashtable auxiliar. Es
+     * procedimiento es para agregar elementos en la hashtable de keyword y la
+     * de autores.
      *
-     * Agrega una lista de palabras clave a la tabla hash de palabras clave de
-     * los summaries. Si la palabra clave ya existe en la tabla, se agrega la
-     * posición del resumen a la lista de posiciones de la palabra clave.
-     *
-     * @param keywordArray el arreglo de palabras clave a agregar a la tabla
-     * hash
-     * @param position la posición del resumen al que pertenecen las palabras
-     * clave en el arreglo de resúmenes
+     * @param HT La tabla Hash que se está utilizando.
+     * @param arrayAux El arreglo de String con los keywords a agregar o con los
+     * autores.
+     * @param position La posición del paper que se está agregando.
      */
-    public void addKeyword(String[] keywordArray, int position) {
-//        System.out.println(keywordArray.length);
-        for (String currentKeyWord : keywordArray) {
+    public void addInAuxHT(LinkedList<Integer>[] HT, String[] arrayAux, int position) {
+
+        for (String currentInfo : arrayAux) {
             // Se llama al Hash function pripcipal DBJ2  
-            int hash1 = DBJ2(currentKeyWord);
+            int hash1 = DBJ2(currentInfo);
             // Se llama al DoubleHash para el manejo de colisiones.
-            int hash2 = doubleHash(currentKeyWord);
+            int hash2 = doubleHash(currentInfo);
 
             // Se asigna como index inicial al hash1
             int index = hash1;
 
             // Se valida si esta vacío el slot. 
-            if (this.getKeywords()[index].isEmpty()) {
-                this.getKeywords()[index].addEnd(position);
-                this.getKeywords()[index].getpFirst().setKey(currentKeyWord.strip());
+            if (HT[index].isEmpty()) {
+                HT[index].addEnd(position);
+                HT[index].getpFirst().setKey(currentInfo.strip());
 
                 // Si no esta vacio se valida si se esta intentado meter el mismo int (index del title) ya cargado.
             } else {
                 // si el keyword coincide con el key del primer nodo de la lista, entonces se agrega al final de la lista
-                if (currentKeyWord.strip().equalsIgnoreCase(this.getKeywords()[index].getpFirst().getKey().strip())) {
-                    this.getKeywords()[index].addEnd(position);
+                if (currentInfo.strip().equalsIgnoreCase(HT[index].getpFirst().getKey().strip())) {
+                    HT[index].addEnd(position);
                     //si no, entonces el se maneja la colision
                 } else {
                     int n = 0;
-                    while (!this.getKeywords()[index].isEmpty()) {
+                    while (!HT[index].isEmpty()) {
                         n++;
                         // Se asigna index nuevo usando metodo double hashing., 
                         index = (hash1 + n * hash2) % this.getKeywords().length;
                     }
-                    this.getKeywords()[index].addEnd(position);
-                    this.getKeywords()[index].getpFirst().setKey(currentKeyWord.strip());
+                    HT[index].addEnd(position);
+                    HT[index].getpFirst().setKey(currentInfo.strip());
                 }
             }
         }
     }
-
+    
     /**
      * Rellena la tabla de hash de palabras clave, inicializando cada lista
      * enlazada en cada índice de la tabla.
+     *
+     * @param array la hashtable a inicializar
      */
-    public void fillKeyWordHT() {
-        for (int i = 0; i < this.keywords.length; i++) {
-            this.keywords[i] = new LinkedList<>();
+    public void fillHT(LinkedList<Integer>[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = new LinkedList<>();
         }
     }
 
@@ -204,5 +208,19 @@ public class HashTable {
             }
         }
         return result;
+    }
+
+    /**
+     * @return the authors
+     */
+    public LinkedList<Integer>[] getAuthors() {
+        return authors;
+    }
+
+    /**
+     * @param authors the authors to set
+     */
+    public void setAuthors(LinkedList<Integer>[] authors) {
+        this.authors = authors;
     }
 }

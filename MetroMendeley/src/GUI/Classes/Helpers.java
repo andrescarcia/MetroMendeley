@@ -125,12 +125,11 @@ public class Helpers {
      */
     public void fillInfoKeyWord(JTextArea showInfo, JComboBox<String> selectKeywordOptions) {
         String text = "";
-        for (Summary summary : app.getHashTable().getSummaries()) {
-            if (summary != null) {
-                for (String keyword : summary.getKeywords()) {
-                    selectKeywordOptions.addItem(keyword.strip());
-                    text += "-" + keyword.strip() + "\n";
-                }
+        for (LinkedList<Integer> pAux : app.getHashTable().getKeywords()) {
+            if (!pAux.isEmpty()) {
+                String keyword = pAux.getpFirst().getKey();
+                selectKeywordOptions.addItem(keyword.strip());
+                text += "-" + keyword.strip() + "\n";
             }
         }
         showInfo.setText(text);
@@ -216,8 +215,64 @@ public class Helpers {
                     + paperSelected.toString());
         }
     }
-    ///////////////////////////////////////////////////////////////////////////////////////////////
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////// METODOS USADOS EN BuscarAutor.java  //////////////////////////////
+    /**
+     * Llena un JComboBox con los nombres de los autores cargados en la Hash
+     * Table.
+     *
+     * @param selectAutorDisplay JComboBox donde se mostrarán los nombres de los
+     * autores.
+     */
+    public void fillInfoAuthors(JComboBox<String> selectAutorDisplay) {
+        for (LinkedList<Integer> pAux : app.getHashTable().getAuthors()) {
+            if (!pAux.isEmpty()) {
+                String author = pAux.getpFirst().getKey();
+                selectAutorDisplay.addItem(author.strip());
+            }
+        }
+    }
+
+    public void fillInfoPapers(JComboBox<String> selectAutorDisplay, JComboBox<String> selectArticuloDisplay) {
+        
+        String author = (String) selectAutorDisplay.getSelectedItem();
+        int firstHash = app.getHashTable().DBJ2(author);
+        int indexKeyWord = firstHash;
+        LinkedList<Integer> papersPositions = app.getHashTable().getAuthors()[indexKeyWord];
+
+        //Verificamos si la posicion corresponde
+        if (author.strip().equalsIgnoreCase(papersPositions.getpFirst().getKey().strip())) {
+            //Mostramos todos los papers relacionados con el autor
+            Node<Integer> pAux = papersPositions.getpFirst();
+            for (int i = 0; i < papersPositions.getiSize(); i++) {
+                String title = app.getHashTable().getSummaries()[pAux.getTInfo()].getTitle();
+                selectArticuloDisplay.addItem(title);
+                pAux = papersPositions.next(pAux);
+            }
+        } else {
+            //Hay una colision
+            int hashAux = app.getHashTable().doubleHash(author);
+            int n = 0;
+            while (!app.getHashTable().getAuthors()[indexKeyWord].getpFirst().getKey().equalsIgnoreCase(author)) {
+                n++;
+                // Se asigna index nuevo usando metodo double hashing., 
+                indexKeyWord = (firstHash + n * hashAux) % app.getHashTable().getAuthors().length;
+            }
+            
+            //Mostramos todos los papers relacionados con el autor
+            papersPositions = app.getHashTable().getAuthors()[indexKeyWord];
+            Node<Integer> pAux = papersPositions.getpFirst();
+            for (int i = 0; i < papersPositions.getiSize(); i++) {
+                String title = app.getHashTable().getSummaries()[pAux.getTInfo()].getTitle();
+                selectArticuloDisplay.addItem(title);
+                pAux = papersPositions.next(pAux);
+            }
+
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
     /**
      * @return the f
      */
