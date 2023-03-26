@@ -4,19 +4,21 @@
  */
 package GUI.Classes;
 
+import AppClasses.App;
 import java.awt.Point;
 
 /**
  *
- * @author andre
+ * @author andre & Erika Hernández
  */
 public class AnalizarResumen extends javax.swing.JFrame {
-
     private Point initialClick;
     private Helpers helpers = new Helpers();
-
+    private App app = App.getInstance();
     boolean titleSelected = false;
-
+    ;
+   
+    
     /**
      * Creates new form Inicio
      */
@@ -24,11 +26,10 @@ public class AnalizarResumen extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.getHelpers().fillInfoTitles(this.showSummaries, this.selectSumaryDisplay);
-        this.showSummaries.setEnabled(true);
-        this.showSummaries.setCaretPosition(0);
+        this.showSumarys.setEditable(false);
+        this.helpers.fillInfoTitles(showSumarys, selectSumaryDisplay);
+        this.showSumarys.setEnabled(true);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,7 +64,7 @@ public class AnalizarResumen extends javax.swing.JFrame {
         exit = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        showSummaries = new javax.swing.JTextArea();
+        showSumarys = new javax.swing.JTextArea();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         AnalizarBoton = new javax.swing.JButton();
@@ -280,11 +281,6 @@ public class AnalizarResumen extends javax.swing.JFrame {
         });
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/saliryguardar-Icon.png"))); // NOI18N
-        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel15MouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout btn_SalirGuardarLayout = new javax.swing.GroupLayout(btn_SalirGuardar);
         btn_SalirGuardar.setLayout(btn_SalirGuardarLayout);
@@ -387,11 +383,11 @@ public class AnalizarResumen extends javax.swing.JFrame {
 
         BG.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 650, 190));
 
-        showSummaries.setColumns(20);
-        showSummaries.setLineWrap(true);
-        showSummaries.setRows(5);
-        showSummaries.setEnabled(false);
-        jScrollPane1.setViewportView(showSummaries);
+        showSumarys.setColumns(20);
+        showSumarys.setLineWrap(true);
+        showSumarys.setRows(5);
+        showSumarys.setEnabled(false);
+        jScrollPane1.setViewportView(showSumarys);
 
         BG.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 520, 330));
 
@@ -442,10 +438,10 @@ public class AnalizarResumen extends javax.swing.JFrame {
 
     private void exitMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMousePressed
         // TODO add your handling code here:
-        this.getHelpers().exitApp();
+        System.exit(0);
 
     }//GEN-LAST:event_exitMousePressed
-
+    
 
     private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
         // TODO add your handling code here:
@@ -508,32 +504,42 @@ public class AnalizarResumen extends javax.swing.JFrame {
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
         // TODO add your handling code here:
-        this.getHelpers().exitApp();
     }//GEN-LAST:event_jLabel14MouseClicked
 
     private void btn_SalirGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SalirGuardarMouseClicked
         // TODO add your handling code here:
-        this.getHelpers().exitApp();
     }//GEN-LAST:event_btn_SalirGuardarMouseClicked
 
     private void AnalizarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnalizarBotonActionPerformed
         // TODO add your handling code here:
-        if (!this.titleSelected) {
+        /** FUNCIONALIDAD BOTON ANALIZAR Y QUITAR RESUMEN 
+        *  Permite obtener la información y análisis del artículo seleccionado y volver atrás en caso de que desee buscar otro artículo. 
+        */
+        if (!this.titleSelected){
             this.titleSelected = true;
+            // Se modifica el botón para que el usuario sea capaz de volver atrás y seleccionar otro resumen.
             this.AnalizarBoton.setText("Quitar");
-            getHelpers().searchPaperByTitle(selectSumaryDisplay, showSummaries);
+            // Se pasa el JComboBox con la opción seleccionada & el TextArea a la función auxiliar para mostrar la información y análisis del artículo seleccionado.
+            helpers.searchPaperByTitle(selectSumaryDisplay, showSumarys);
+            // Se modifica los labels para que el usuario identifique que ha cambiado de estado la pestaña.
             this.jLabel18.setText("A continuación tiene disponible toda la información");
             this.jLabel20.setText("del artículo seleccionado:");
+            // Se bloquea el JComboBox 
             this.selectSumaryDisplay.setEnabled(false);
-            this.showSummaries.setCaretPosition(0);
+            this.showSumarys.setCaretPosition(0);
+
         } else {
+            // Se modifica el botón para que el usuario sea capaz obtener la información del artículo seleccionado en el JComboBox
             this.AnalizarBoton.setText("Analizar");
-            this.getHelpers().fillInfoTitles(showSummaries, selectSumaryDisplay);
+             // Llama al método auxiliar de Helpers para que mostrar en el TextArea los titulos de los articulos disponibles alfabeticamente y llenar el JComboBox con los titulos. 
+            this.helpers.fillInfoTitles(showSumarys, selectSumaryDisplay);
             this.titleSelected = false;
-            this.jLabel18.setText("A continuación tiene una lista ordenada alfabeticamente");
+            // Se modifica los labels para que el usuario identifique los titulos de los articulos disponibles. this.jLabel18.setText("A continuación tiene una lista ordenada alfabeticamente");
+             this.jLabel18.setText("A continuación tiene una lista ordenada alfabeticamente");
             this.jLabel20.setText("de artículos científicos disponibles:");
+             // Se habilita el JComboBox para que el usuario pueda seleccionar título.
             this.selectSumaryDisplay.setEnabled(true);
-            this.showSummaries.setCaretPosition(0);
+            this.showSumarys.setCaretPosition(0);
         }
     }//GEN-LAST:event_AnalizarBotonActionPerformed
 
@@ -576,11 +582,6 @@ public class AnalizarResumen extends javax.swing.JFrame {
         v2.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel9MouseClicked
-
-    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
-        // TODO add your handling code here:
-        this.getHelpers().exitApp();
-    }//GEN-LAST:event_jLabel15MouseClicked
 
     /**
      * @param args the command line arguments
@@ -656,21 +657,6 @@ public class AnalizarResumen extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JComboBox<String> selectSumaryDisplay;
-    private javax.swing.JTextArea showSummaries;
+    private javax.swing.JTextArea showSumarys;
     // End of variables declaration//GEN-END:variables
-
-    /**
-     * @return the helpers
-     */
-    public Helpers getHelpers() {
-        return helpers;
-    }
-
-    /**
-     * @param helpers the helpers to set
-     */
-    public void setHelpers(Helpers helpers) {
-        this.helpers = helpers;
-    }
-
 }

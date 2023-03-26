@@ -30,6 +30,7 @@ public class BuscarKeyword extends javax.swing.JFrame {
         this.showInfo.setEditable(false);
         this.getHelpers().fillInfoKeyWord(this.showInfo, this.selectKeywordOptions);
         this.showInfo.setCaretPosition(0);
+        
     }
 
     /**
@@ -523,22 +524,35 @@ public class BuscarKeyword extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_SalirGuardarMouseClicked
 
     private void AnalizarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnalizarBotonActionPerformed
-        // TODO add your handling code here:
+         // TODO add your handling code here:
+        /** FUNCIONALIDAD BOTON ANALIZAR Y QUITAR RESUMEN 
+        *  Permite obtener la información del artículo seleccionado y volver atrás en caso de que desee buscar otro artículo por keyword. 
+        */
         if (!this.selectedPaper) {
             this.selectedPaper = true;
+            // Se pasa el JComboBox con la opción seleccionada & el TextArea a la función auxiliar para mostrar la información del artículo seleccionado.
             this.getHelpers().searchPaperByKeyword(this.selectPaper, this.showInfo);
             this.showInfo.setCaretPosition(0);
+            // Se modifica el botón para que el usuario sea capaz de volver atrás y seleccionar otro resumen.
             this.AnalizarBoton.setText("Quitar");
+            // Se bloquea el JComboBox 
             this.selectPaper.setEnabled(false);
+            // Se modifica los labels para que el usuario identifique que ha cambiado de estado la pestaña.
             this.jLabel18.setText("Informacion del articulo seleccionado");
         } else {
+            // Se modifica los labels para que el usuario identifique que ha cambiado de estado la pestaña.
             this.jLabel18.setText("A continuación tiene una lista de las Keywords disponibles");
             this.selectedPaper = false;
+            // Se habilita el JComboBox para que el usuario seleccione el artículo.
             this.selectPaper.setEnabled(true);
+            // Se pasa el JComboBox de palabras claves  y el TextArea a la función auxiliar para mostrar la información de palabras claves disponibles.
             this.getHelpers().fillInfoKeyWord(this.showInfo, this.selectKeywordOptions);
+            // Se vacían JComBox para que no colisionen keywords que pudieran estar previamente de una busqueda anterior.
             this.selectKeywordOptions.removeAllItems();
+            // Se pasa el JComboBox de palabras claves  y el TextArea a la función auxiliar para mostrar la información de palabras claves disponibles.
             this.getHelpers().fillInfoKeyWord(showInfo, selectKeywordOptions);
             this.showInfo.setCaretPosition(0);
+            // Se modifica el nombre del botón para que el usuario sea capaz analizar el artīculo.
             this.AnalizarBoton.setText("Analizar");
 
         }
@@ -556,29 +570,46 @@ public class BuscarKeyword extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_AgregarResumenMouseClicked
 
     private void BuscarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarBotonActionPerformed
-        // TODO add your handling code here:
+           // TODO add your handling code here:
+        /** FUNCIONALIDAD BOTON BUSCAR RESUMENES POR KEYWORD 
+        *  Permite obtener la información del artículo seleccionado y volver atrás en caso de que desee buscar otro artículo por keyword. 
+        */
         if (!this.keyWordSelected) {
             this.keyWordSelected = true;
+            // Se inhabilita JComBox de mostrar keywords.
             this.selectKeywordOptions.setEnabled(false);
+            // Se habilita JComboBox para seleccionar titulo de articulo.
             this.selectPaper.setEnabled(true);
+            // Se habilita botón analizar resumen.
             this.AnalizarBoton.setEnabled(true);
+            // Se cambia botón de Analizar artículo.
             this.AnalizarBoton.setText("Analizar");
+            // Se modifica el botón para que el usuario sea capaz de volver atrás y seleccionar otro keyword.
             this.BuscarBoton.setText("Quitar");
+            // Se pasa el JComboBox de palabras claves con la opción seleccionada y el JComboBox de titulos de artículos para mostrar titulos relacionados.
             getHelpers().fillSelectPaper(this.selectKeywordOptions, selectPaper);
             this.showInfo.setCaretPosition(0);
             this.selectedPaper = false;
         } else {
             this.selectedPaper = false;
+            // Se modifica nombre de boton buscar keyword.
             this.BuscarBoton.setText("Buscar");
             this.AnalizarBoton.setText("Analizar");
+            // Se inhabilita JComboBox de seleccionar titulo de articulo hasta que se tenga el keyword.
             this.selectPaper.setEnabled(false);
+            // Se inhabilita botón seleccionar titulo de artículo.
             this.AnalizarBoton.setEnabled(false);
+            // Se habilita JComboBox de mostrar keywords. 
             this.selectKeywordOptions.setEnabled(true);
             this.keyWordSelected = false;
+            // Se remueven todos los titulos que pudieron haber estado cargadas en el JComboBox de un busqueda previa.
             this.selectPaper.removeAllItems();
+            // Se remueven todos los Keywords que pudieron haber estado cargadas en el JComboBox de un busqueda previa.
             this.selectKeywordOptions.removeAllItems();
+            // Se pasa el JComboBox de palabras claves  y el TextArea a la función auxiliar para mostrar la información de palabras claves disponibles.
             this.getHelpers().fillInfoKeyWord(showInfo, selectKeywordOptions);
             this.showInfo.setCaretPosition(0);
+            // Se modifica los labels para que el usuario identifique que lo que se muestra en el TextArea son las palabras claves.
             this.jLabel18.setText("A continuación tiene una lista de las Keywords disponibles");
         }
     }//GEN-LAST:event_BuscarBotonActionPerformed

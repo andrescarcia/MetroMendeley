@@ -135,6 +135,14 @@ public class HashTable {
                         n++;
                         // Se asigna index nuevo usando metodo double hashing., 
                         index = (hash1 + n * hash2) % this.getKeywords().length;
+                        
+                        // Se valida si el nuevo índice es el mismo que el anterior y si la lista no está vacía.
+                        if (!HT[index].isEmpty()){
+                            // Si el keyword coincide con el key del primer nodo de la lista, se sale del ciclo while.
+                            if (currentInfo.strip().equalsIgnoreCase(HT[index].getpFirst().getKey().strip())){
+                                break;
+                            }
+                        }
                     }
                     HT[index].addEnd(position);
                     HT[index].getpFirst().setKey(currentInfo.strip());
@@ -142,7 +150,7 @@ public class HashTable {
             }
         }
     }
-    
+
     /**
      * Rellena la tabla de hash de palabras clave, inicializando cada lista
      * enlazada en cada índice de la tabla.
@@ -151,7 +159,7 @@ public class HashTable {
      */
     public void fillHT(LinkedList<Integer>[] array) {
         for (int i = 0; i < array.length; i++) {
-            
+
             array[i] = new LinkedList<>();
         }
     }
@@ -183,8 +191,8 @@ public class HashTable {
      */
     public void setKeywords(LinkedList<Integer>[] keywords) {
         this.keywords = keywords;
-    }  
-    
+    }
+
     /**
      * Busca un resumen por título utilizando la técnica de hashing doble.
      *
@@ -199,11 +207,11 @@ public class HashTable {
         Summary result = this.getSummaries()[index];
 
         if (result != null) {
-            if (result.getTitle().equalsIgnoreCase(title)) {
+            if (result.getTitle().toLowerCase().equals(title.toLowerCase())) {
                 return result;
             } else {
                 int i = 0;
-                while (!this.getSummaries()[index].getTitle().equalsIgnoreCase(title) && i < this.getSummaries().length) {
+                while (!this.getSummaries()[index].getTitle().toLowerCase().equals(title.toLowerCase()) && i < this.getSummaries().length) {
                     i++;
                     index = (hash1 + i * hash2) % this.getSummaries().length;
                 }
