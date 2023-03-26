@@ -4,6 +4,7 @@
  */
 package GUI.Classes;
 
+import AppClasses.App;
 import java.awt.Dimension;
 import java.awt.Point;
 import javax.swing.JOptionPane;
@@ -17,6 +18,7 @@ import javax.swing.JTextArea;
 public class BuscarAutor extends javax.swing.JFrame {
 
     private Helpers helpers = new Helpers();
+    private App app = App.getInstance();
 
     /**
      * Creates new form Inicio
@@ -519,12 +521,13 @@ public class BuscarAutor extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here
-        String mensaje = getHelpers().searchPaperByTitle(selectArticuloDisplay, JTextArea);
+        String title = (String) this.selectArticuloDisplay.getSelectedItem();
+        String mensaje = app.getHashTable().searchSummary(title).toString();
         JTextArea textArea = new JTextArea(mensaje);
         textArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setPreferredSize(new Dimension(400, 300));
-        JOptionPane.showMessageDialog(this, scrollPane, "Resumen", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, scrollPane, "Información del Artículo", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void selectArticuloDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectArticuloDisplayActionPerformed
@@ -534,7 +537,7 @@ public class BuscarAutor extends javax.swing.JFrame {
 
     private void selectAutorDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectAutorDisplayActionPerformed
         // TODO add your handling code here:
-        
+
 
     }//GEN-LAST:event_selectAutorDisplayActionPerformed
 
@@ -679,6 +682,7 @@ public class BuscarAutor extends javax.swing.JFrame {
     public void setHelpers(Helpers helpers) {
         this.helpers = helpers;
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BG;
@@ -714,4 +718,18 @@ public class BuscarAutor extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> selectArticuloDisplay;
     private javax.swing.JComboBox<String> selectAutorDisplay;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the app
+     */
+    public App getApp() {
+        return app;
+    }
+
+    /**
+     * @param app the app to set
+     */
+    public void setApp(App app) {
+        this.app = app;
+    }
 }

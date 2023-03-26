@@ -13,8 +13,8 @@ import java.awt.Point;
  */
 public class AnalizarResumen extends javax.swing.JFrame {
     private Point initialClick;
-    private Helpers helpers = new Helpers();
-    private App app = App.getInstance();
+    private final Helpers helpers = new Helpers();
+    private final App app = App.getInstance();
     boolean titleSelected = false;
     ;
    
