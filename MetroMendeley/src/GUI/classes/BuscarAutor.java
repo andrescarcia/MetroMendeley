@@ -526,7 +526,7 @@ public class BuscarAutor extends javax.swing.JFrame {
         JTextArea textArea = new JTextArea(mensaje);
         textArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(textArea);
-        scrollPane.setPreferredSize(new Dimension(400, 300));
+        scrollPane.setPreferredSize(new Dimension(600, 380));
         JOptionPane.showMessageDialog(this, scrollPane, "Información del Artículo", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
