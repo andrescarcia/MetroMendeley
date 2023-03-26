@@ -14,6 +14,7 @@ public class Summary {
     private String[] authors;
     private String body;
     private String[] keywords;
+    private String[] autor;
 
     public Summary(String title, String[] authors, String body, String[] keywords) {
         this.title = title.strip();
@@ -67,15 +68,15 @@ public class Summary {
     /**
      * @return the authors
      */
-    public String[] getAuthors() {
-        return authors;
+    public String[] getAutor() {
+        return autor;
     }
 
     /**
-     * @param authors the authors to set
+     * @param autor
      */
-    public void setAuthors(String[] authors) {
-        this.authors = authors;
+    public void setAutor(String[] autor) {
+        this.autor = autor;
     }
 
     /**
