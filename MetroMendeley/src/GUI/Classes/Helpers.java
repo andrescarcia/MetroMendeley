@@ -128,6 +128,7 @@ public class Helpers {
         for (LinkedList<Integer> pAux : app.getHashTable().getKeywords()) {
             if (!pAux.isEmpty()) {
                 String keyword = pAux.getpFirst().getKey();
+                System.out.println(keyword);
                 selectKeywordOptions.addItem(keyword.strip());
                 text += "-" + keyword.strip() + "\n";
             }
@@ -145,7 +146,8 @@ public class Helpers {
      * resúmenes relacionados a la palabra clave seleccionada.
      */
     public void fillSelectPaper(JComboBox<String> selectKeywordOptions, JComboBox<String> selectPaper) {
-
+        
+        
         String keyWordSelected = (String) selectKeywordOptions.getSelectedItem();
         int firstHash = app.getHashTable().DBJ2(keyWordSelected);
         int indexKeyWord = firstHash;
@@ -235,7 +237,7 @@ public class Helpers {
     }
 
     public void fillInfoPapers(JComboBox<String> selectAutorDisplay, JComboBox<String> selectArticuloDisplay) {
-        
+        selectArticuloDisplay.removeAllItems();
         String author = (String) selectAutorDisplay.getSelectedItem();
         int firstHash = app.getHashTable().DBJ2(author);
         int indexKeyWord = firstHash;

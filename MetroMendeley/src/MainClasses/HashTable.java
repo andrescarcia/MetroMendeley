@@ -14,14 +14,14 @@ public class HashTable {
     private Summary[] summaries;
     private LinkedList<Integer>[] keywords;
 
-    private LinkedList<Integer>[] Authors;
+    private LinkedList<Integer>[] authors;
 
     public HashTable(int i, int j, int k) {
         this.summaries = new Summary[i];
         this.keywords = new LinkedList[j];
-        this.Authors = new LinkedList[k];
+        this.authors = new LinkedList[k];
         this.fillHT(this.keywords);
-        this.fillHT(this.Authors);
+        this.fillHT(this.authors);
 
     }
 
@@ -151,6 +151,7 @@ public class HashTable {
      */
     public void fillHT(LinkedList<Integer>[] array) {
         for (int i = 0; i < array.length; i++) {
+            
             array[i] = new LinkedList<>();
         }
     }
@@ -182,24 +183,8 @@ public class HashTable {
      */
     public void setKeywords(LinkedList<Integer>[] keywords) {
         this.keywords = keywords;
-    }
-     /**
-     * @return the Autor
-     */
-    public LinkedList<Integer>[] getAutor() {
-        return this.Authors;
-    }
+    }  
     
-    /**
-     * @param autor the keywords to set
-     */
-    
-    public void setAutor(LinkedList<Integer>[] autor) {
-        this.keywords = autor;
-    }
-    
-    
-
     /**
      * Busca un resumen por título utilizando la técnica de hashing doble.
      *
@@ -232,13 +217,13 @@ public class HashTable {
      * @return the authors
      */
     public LinkedList<Integer>[] getAuthors() {
-        return Authors;
+        return authors;
     }
 
     /**
      * @param authors the authors to set
      */
     public void setAuthors(LinkedList<Integer>[] authors) {
-        this.Authors = authors;
+        this.authors = authors;
     }
 }

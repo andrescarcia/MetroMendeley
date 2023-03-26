@@ -14,7 +14,6 @@ public class Summary {
     private String[] authors;
     private String body;
     private String[] keywords;
-    private String[] author;
 
     public Summary(String title, String[] authors, String body, String[] keywords) {
         this.title = title.strip();
@@ -24,6 +23,43 @@ public class Summary {
     }
 
     // Getters & Setters
+
+
+    @Override
+    public String toString() {
+        String authorsString = String.join(", ", this.getAuthors()) + ".";
+        String keywordsString = String.join(", ", this.getKeywords()) + ".";
+
+        String[] words = this.getBody().split("\\s+");
+        StringBuilder bodyBuilder = new StringBuilder();
+
+        for (int i = 0; i < words.length; i++) {
+            bodyBuilder.append(words[i]).append(" ");
+            if ((i + 1) % 9 == 0) {
+                bodyBuilder.append("\n");
+            }
+        }
+
+        return "TÍTULO: " + this.getTitle() + "\n\nAUTORES: " + authorsString
+                + "\n\nRESUMEN\n" + bodyBuilder.toString() + "\n\nPALABRAS CLAVES: \n" + keywordsString + "\n";
+    }
+
+    /**
+     * Cuenta el número de ocurrencias de una palabra en el resumen.
+     *
+     * @param word la palabra a buscar en el resumen
+     * @return el número de ocurrencias de la palabra en el resumen
+     */
+    public int countOccurrences(String word) {
+        int count = 0;
+        int index = 0;
+        while ((index = this.getBody().indexOf(word, index)) != -1) {
+            count++;
+            index += word.length();
+        }
+        return count;
+    }
+
     /**
      * @return the title
      */
@@ -42,14 +78,14 @@ public class Summary {
      * @return the authors
      */
     public String[] getAuthors() {
-        return author;
+        return authors;
     }
 
     /**
-     * @param autor
+     * @param authors the authors to set
      */
-    public void setAuthors(String[] autor) {
-        this.author = autor;
+    public void setAuthors(String[] authors) {
+        this.authors = authors;
     }
 
     /**
@@ -78,41 +114,6 @@ public class Summary {
      */
     public void setKeywords(String[] keywords) {
         this.keywords = keywords;
-    }
-
-    @Override
-    public String toString() {
-        String authorsString = String.join(", ", this.authors) + ".";
-        String keywordsString = String.join(", ", this.keywords) + ".";
-
-        String[] words = this.body.split("\\s+");
-        StringBuilder bodyBuilder = new StringBuilder();
-
-        for (int i = 0; i < words.length; i++) {
-            bodyBuilder.append(words[i]).append(" ");
-            if ((i + 1) % 9 == 0) {
-                bodyBuilder.append("\n");
-            }
-        }
-
-        return "TÍTULO: " + this.title + "\n\nAUTORES: " + authorsString
-                + "\n\nRESUMEN\n" + bodyBuilder.toString() + "\n\nPALABRAS CLAVES: \n" + keywordsString + "\n";
-    }
-
-    /**
-     * Cuenta el número de ocurrencias de una palabra en el resumen.
-     *
-     * @param word la palabra a buscar en el resumen
-     * @return el número de ocurrencias de la palabra en el resumen
-     */
-    public int countOccurrences(String word) {
-        int count = 0;
-        int index = 0;
-        while ((index = this.body.indexOf(word, index)) != -1) {
-            count++;
-            index += word.length();
-        }
-        return count;
     }
 
 }
