@@ -9,7 +9,7 @@ import java.awt.Point;
 
 /**
  *
- * @author andre
+ * @author andre & Erika Hernández
  */
 public class AnalizarResumen extends javax.swing.JFrame {
     private Point initialClick;
@@ -512,20 +512,34 @@ public class AnalizarResumen extends javax.swing.JFrame {
 
     private void AnalizarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnalizarBotonActionPerformed
         // TODO add your handling code here:
+        /** FUNCIONALIDAD BOTON ANALIZAR Y QUITAR RESUMEN 
+        *  Permite obtener la información y análisis del artículo seleccionado y volver atrás en caso de que desee buscar otro artículo. 
+        */
         if (!this.titleSelected){
             this.titleSelected = true;
+            // Se modifica el botón para que el usuario sea capaz de volver atrás y seleccionar otro resumen.
             this.AnalizarBoton.setText("Quitar");
+            // Se pasa el JComboBox con la opción seleccionada & el TextArea a la función auxiliar para mostrar la información y análisis del artículo seleccionado.
             helpers.searchPaperByTitle(selectSumaryDisplay, showSumarys);
+            // Se modifica los labels para que el usuario identifique que ha cambiado de estado la pestaña.
             this.jLabel18.setText("A continuación tiene disponible toda la información");
             this.jLabel20.setText("del artículo seleccionado:");
+            // Se bloquea el JComboBox 
             this.selectSumaryDisplay.setEnabled(false);
+            this.showSumarys.setCaretPosition(0);
+
         } else {
+            // Se modifica el botón para que el usuario sea capaz obtener la información del artículo seleccionado en el JComboBox
             this.AnalizarBoton.setText("Analizar");
+             // Llama al método auxiliar de Helpers para que mostrar en el TextArea los titulos de los articulos disponibles alfabeticamente y llenar el JComboBox con los titulos. 
             this.helpers.fillInfoTitles(showSumarys, selectSumaryDisplay);
             this.titleSelected = false;
-            this.jLabel18.setText("A continuación tiene una lista ordenada alfabeticamente");
+            // Se modifica los labels para que el usuario identifique los titulos de los articulos disponibles. this.jLabel18.setText("A continuación tiene una lista ordenada alfabeticamente");
+             this.jLabel18.setText("A continuación tiene una lista ordenada alfabeticamente");
             this.jLabel20.setText("de artículos científicos disponibles:");
+             // Se habilita el JComboBox para que el usuario pueda seleccionar título.
             this.selectSumaryDisplay.setEnabled(true);
+            this.showSumarys.setCaretPosition(0);
         }
     }//GEN-LAST:event_AnalizarBotonActionPerformed
 

@@ -19,11 +19,17 @@ import java.io.PrintWriter;
 public class FileFunctions {
 
     private App app = App.getInstance();
-
     /**
-     * Lee y actualiza el fichero por defecto que contiene la información de los
-     * artículos.
-     */
+        LEER Y ACTUALIZAR FICHERO POR DEFECTO CON INFORMACIÓN DE LOS ARTÍCULOS.
+        
+        * Lee el contenido del archivo DefaultFile.txt y lo almacena en una variable.
+        Se espera que el archivo esté ubicado en la carpeta "test" del proyecto.
+        El método procesa los datos del archivo y crea un objeto Summary.
+        Para ello, el método realiza una serie de operaciones de separación y limpieza de datos, y 
+        luego utiliza los datos obtenidos para crear un objeto Summary.
+        Finalmente, el objeto Summary es agregado a una estructura de datos de tipo hashTable, que se 
+        utiliza para realizar búsquedas y operaciones en el sistema.
+    */
     public void readDefaultFile() {
         String path = "test//DefaultFile.txt";
         String line;
