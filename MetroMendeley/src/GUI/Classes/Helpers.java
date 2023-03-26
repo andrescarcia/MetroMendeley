@@ -128,7 +128,6 @@ public class Helpers {
         for (LinkedList<Integer> pAux : app.getHashTable().getKeywords()) {
             if (!pAux.isEmpty()) {
                 String keyword = pAux.getpFirst().getKey();
-                System.out.println(keyword);
                 selectKeywordOptions.addItem(keyword.strip());
                 text += "-" + keyword.strip() + "\n";
             }
@@ -146,8 +145,7 @@ public class Helpers {
      * resúmenes relacionados a la palabra clave seleccionada.
      */
     public void fillSelectPaper(JComboBox<String> selectKeywordOptions, JComboBox<String> selectPaper) {
-        
-        
+
         String keyWordSelected = (String) selectKeywordOptions.getSelectedItem();
         int firstHash = app.getHashTable().DBJ2(keyWordSelected);
         int indexKeyWord = firstHash;
@@ -261,7 +259,7 @@ public class Helpers {
                 // Se asigna index nuevo usando metodo double hashing., 
                 indexKeyWord = (firstHash + n * hashAux) % app.getHashTable().getAuthors().length;
             }
-            
+
             //Mostramos todos los papers relacionados con el autor
             papersPositions = app.getHashTable().getAuthors()[indexKeyWord];
             Node<Integer> pAux = papersPositions.getpFirst();

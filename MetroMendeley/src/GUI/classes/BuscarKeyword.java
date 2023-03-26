@@ -30,6 +30,7 @@ public class BuscarKeyword extends javax.swing.JFrame {
         this.showInfo.setEditable(false);
         this.getHelpers().fillInfoKeyWord(this.showInfo, this.selectKeywordOptions);
         this.showInfo.setCaretPosition(0);
+        
     }
 
     /**

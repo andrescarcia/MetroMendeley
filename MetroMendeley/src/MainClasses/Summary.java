@@ -22,9 +22,6 @@ public class Summary {
         this.keywords = keywords;
     }
 
-    // Getters & Setters
-
-
     @Override
     public String toString() {
         String authorsString = String.join(", ", this.getAuthors()) + ".";

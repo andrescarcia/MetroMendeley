@@ -19,17 +19,19 @@ import java.io.PrintWriter;
 public class FileFunctions {
 
     private App app = App.getInstance();
+
     /**
-        LEER Y ACTUALIZAR FICHERO POR DEFECTO CON INFORMACIÓN DE LOS ARTÍCULOS.
-        
-        * Lee el contenido del archivo DefaultFile.txt y lo almacena en una variable.
-        Se espera que el archivo esté ubicado en la carpeta "test" del proyecto.
-        El método procesa los datos del archivo y crea un objeto Summary.
-        Para ello, el método realiza una serie de operaciones de separación y limpieza de datos, y 
-        luego utiliza los datos obtenidos para crear un objeto Summary.
-        Finalmente, el objeto Summary es agregado a una estructura de datos de tipo hashTable, que se 
-        utiliza para realizar búsquedas y operaciones en el sistema.
-    */
+     * LEER Y ACTUALIZAR FICHERO POR DEFECTO CON INFORMACIÓN DE LOS ARTÍCULOS.
+     *
+     * Lee el contenido del archivo DefaultFile.txt y lo almacena en una
+     * variable. Se espera que el archivo esté ubicado en la carpeta "test" del
+     * proyecto. El método procesa los datos del archivo y crea un objeto
+     * Summary. Para ello, el método realiza una serie de operaciones de
+     * separación y limpieza de datos, y luego utiliza los datos obtenidos para
+     * crear un objeto Summary. Finalmente, el objeto Summary es agregado a una
+     * estructura de datos de tipo hashTable, que se utiliza para realizar
+     * búsquedas y operaciones en el sistema.
+     */
     public void readDefaultFile() {
         String path = "test//DefaultFile.txt";
         String line;
@@ -78,7 +80,6 @@ public class FileFunctions {
             int position = app.getHashTable().addSumary(summary);
 
             // Se agrega los keywords al hashtable secundario (util para el requerimiento 3). 
-
             app.getHashTable().addInAuxHT(app.getHashTable().getKeywords(), summary.getKeywords(), position);
 
             // se guarda por orden alfabetico
@@ -237,8 +238,8 @@ public class FileFunctions {
      */
     public boolean isValidFormat(String txt) {
         boolean b = true;
-
-        if (!txt.toLowerCase().contains("autores") || !txt.toLowerCase().contains("resumen") || !txt.toLowerCase().contains("palabras claves:")) {
+        txt = txt.toLowerCase();
+        if (!txt.contains("autores") || !txt.contains("resumen") || !txt.contains("palabras claves:")) {
             b = false;
         }
 
